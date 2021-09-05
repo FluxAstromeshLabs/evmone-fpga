@@ -1,0 +1,988 @@
+
+
+================================================================
+== Vitis HLS Report for 'compute_keccak_1'
+================================================================
+* Date:           Mon Aug 23 09:42:04 2021
+
+* Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:45 MST 2020)
+* Project:        refactor-fpga
+* Solution:       refactor (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.034 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|     none|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------+---------+---------+-----------+-----------+-----------+-----------+----------+
+        |                       |  Latency (cycles) | Iteration |  Initiation Interval  |    Trip   |          |
+        |       Loop Name       |   min   |   max   |  Latency  |  achieved |   target  |   Count   | Pipelined|
+        +-----------------------+---------+---------+-----------+-----------+-----------+-----------+----------+
+        |- VITIS_LOOP_217_1     |      648|        ?|  648 ~ 802|          -|          -|      1 ~ ?|        no|
+        | + VITIS_LOOP_162_1    |       17|       17|          2|          1|          1|         17|       yes|
+        | + VITIS_LOOP_217_1.2  |      136|      136|          2|          1|          1|        136|       yes|
+        | + VITIS_LOOP_162_1    |       34|       34|          2|          2|          1|         17|       yes|
+        |- Loop 2               |        0|    65535|          2|          1|          1|  0 ~ 65535|       yes|
+        |- Loop 3               |        ?|        ?|          1|          1|          1|          ?|       yes|
+        |- VITIS_LOOP_162_1     |       34|       34|          2|          2|          1|         17|       yes|
+        +-----------------------+---------+---------+-----------+-----------+-----------+-----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+  * Pipeline-1: initiation interval (II) = 2, depth = 2
+  * Pipeline-2: initiation interval (II) = 1, depth = 2
+  * Pipeline-3: initiation interval (II) = 1, depth = 2
+  * Pipeline-4: initiation interval (II) = 1, depth = 1
+  * Pipeline-5: initiation interval (II) = 2, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 54
+* Pipeline : 6
+  Pipeline-0 : II = 1, D = 2, States = { 27 28 }
+  Pipeline-1 : II = 2, D = 2, States = { 30 31 }
+  Pipeline-2 : II = 1, D = 2, States = { 34 35 }
+  Pipeline-3 : II = 1, D = 2, States = { 38 39 }
+  Pipeline-4 : II = 1, D = 1, States = { 42 }
+  Pipeline-5 : II = 2, D = 2, States = { 48 49 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 34 40 38 
+27 --> 29 28 
+28 --> 27 
+29 --> 30 
+30 --> 32 31 
+31 --> 30 
+32 --> 33 
+33 --> 26 
+34 --> 36 35 
+35 --> 34 
+36 --> 37 
+37 --> 33 
+38 --> 40 39 
+39 --> 38 
+40 --> 41 
+41 --> 42 
+42 --> 43 42 
+43 --> 44 
+44 --> 45 
+45 --> 46 
+46 --> 47 
+47 --> 48 
+48 --> 50 49 
+49 --> 48 
+50 --> 51 
+51 --> 52 
+52 --> 53 
+53 --> 54 
+54 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.29>
+ST_1 : Operation 55 [1/1] (0.00ns)   --->   "%keccak_context = alloca i64 1"   --->   Operation 55 'alloca' 'keccak_context' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_1 : Operation 56 [1/1] (0.00ns)   --->   "%keccak_context_addr = getelementptr i64 %keccak_context, i64 0, i64 0"   --->   Operation 56 'getelementptr' 'keccak_context_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr, i64 0, i8 255"   --->   Operation 57 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_1 : Operation 58 [1/1] (0.00ns)   --->   "%keccak_context_addr_14 = getelementptr i64 %keccak_context, i64 0, i64 1"   --->   Operation 58 'getelementptr' 'keccak_context_addr_14' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 59 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_14, i64 0, i8 255"   --->   Operation 59 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 2 <SV = 1> <Delay = 1.29>
+ST_2 : Operation 60 [1/1] (0.00ns)   --->   "%keccak_context_addr_15 = getelementptr i64 %keccak_context, i64 0, i64 2"   --->   Operation 60 'getelementptr' 'keccak_context_addr_15' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 61 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_15, i64 0, i8 255"   --->   Operation 61 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_2 : Operation 62 [1/1] (0.00ns)   --->   "%keccak_context_addr_16 = getelementptr i64 %keccak_context, i64 0, i64 3"   --->   Operation 62 'getelementptr' 'keccak_context_addr_16' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 63 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_16, i64 0, i8 255"   --->   Operation 63 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 3 <SV = 2> <Delay = 1.29>
+ST_3 : Operation 64 [1/1] (0.00ns)   --->   "%keccak_context_addr_17 = getelementptr i64 %keccak_context, i64 0, i64 4"   --->   Operation 64 'getelementptr' 'keccak_context_addr_17' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 65 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_17, i64 0, i8 255"   --->   Operation 65 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_3 : Operation 66 [1/1] (0.00ns)   --->   "%keccak_context_addr_18 = getelementptr i64 %keccak_context, i64 0, i64 5"   --->   Operation 66 'getelementptr' 'keccak_context_addr_18' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 67 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_18, i64 0, i8 255"   --->   Operation 67 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 4 <SV = 3> <Delay = 1.29>
+ST_4 : Operation 68 [1/1] (0.00ns)   --->   "%keccak_context_addr_19 = getelementptr i64 %keccak_context, i64 0, i64 6"   --->   Operation 68 'getelementptr' 'keccak_context_addr_19' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 69 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_19, i64 0, i8 255"   --->   Operation 69 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_4 : Operation 70 [1/1] (0.00ns)   --->   "%keccak_context_addr_20 = getelementptr i64 %keccak_context, i64 0, i64 7"   --->   Operation 70 'getelementptr' 'keccak_context_addr_20' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 71 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_20, i64 0, i8 255"   --->   Operation 71 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 5 <SV = 4> <Delay = 1.29>
+ST_5 : Operation 72 [1/1] (0.00ns)   --->   "%keccak_context_addr_21 = getelementptr i64 %keccak_context, i64 0, i64 8"   --->   Operation 72 'getelementptr' 'keccak_context_addr_21' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 73 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_21, i64 0, i8 255"   --->   Operation 73 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_5 : Operation 74 [1/1] (0.00ns)   --->   "%keccak_context_addr_22 = getelementptr i64 %keccak_context, i64 0, i64 9"   --->   Operation 74 'getelementptr' 'keccak_context_addr_22' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 75 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_22, i64 0, i8 255"   --->   Operation 75 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 6 <SV = 5> <Delay = 1.30>
+ST_6 : Operation 76 [1/1] (0.00ns)   --->   "%msglen_read = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %msglen"   --->   Operation 76 'read' 'msglen_read' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 77 [1/1] (0.00ns)   --->   "%keccak_context_addr_23 = getelementptr i64 %keccak_context, i64 0, i64 10"   --->   Operation 77 'getelementptr' 'keccak_context_addr_23' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 78 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_23, i64 0, i8 255"   --->   Operation 78 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_6 : Operation 79 [1/1] (0.00ns)   --->   "%keccak_context_addr_24 = getelementptr i64 %keccak_context, i64 0, i64 11"   --->   Operation 79 'getelementptr' 'keccak_context_addr_24' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 80 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_24, i64 0, i8 255"   --->   Operation 80 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_6 : Operation 81 [20/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 81 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 1.30>
+ST_7 : Operation 82 [1/1] (0.00ns)   --->   "%keccak_context_addr_25 = getelementptr i64 %keccak_context, i64 0, i64 12"   --->   Operation 82 'getelementptr' 'keccak_context_addr_25' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 83 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_25, i64 0, i8 255"   --->   Operation 83 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_7 : Operation 84 [1/1] (0.00ns)   --->   "%keccak_context_addr_26 = getelementptr i64 %keccak_context, i64 0, i64 13"   --->   Operation 84 'getelementptr' 'keccak_context_addr_26' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 85 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_26, i64 0, i8 255"   --->   Operation 85 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_7 : Operation 86 [19/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 86 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 1.30>
+ST_8 : Operation 87 [1/1] (0.00ns)   --->   "%keccak_context_addr_27 = getelementptr i64 %keccak_context, i64 0, i64 14"   --->   Operation 87 'getelementptr' 'keccak_context_addr_27' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 88 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_27, i64 0, i8 255"   --->   Operation 88 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_8 : Operation 89 [1/1] (0.00ns)   --->   "%keccak_context_addr_28 = getelementptr i64 %keccak_context, i64 0, i64 15"   --->   Operation 89 'getelementptr' 'keccak_context_addr_28' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 90 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_28, i64 0, i8 255"   --->   Operation 90 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_8 : Operation 91 [18/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 91 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 1.30>
+ST_9 : Operation 92 [1/1] (0.00ns)   --->   "%keccak_context_addr_29 = getelementptr i64 %keccak_context, i64 0, i64 16"   --->   Operation 92 'getelementptr' 'keccak_context_addr_29' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 93 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_29, i64 0, i8 255"   --->   Operation 93 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_9 : Operation 94 [1/1] (0.00ns)   --->   "%keccak_context_addr_30 = getelementptr i64 %keccak_context, i64 0, i64 17"   --->   Operation 94 'getelementptr' 'keccak_context_addr_30' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 95 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_30, i64 0, i8 255"   --->   Operation 95 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_9 : Operation 96 [17/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 96 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 1.30>
+ST_10 : Operation 97 [1/1] (0.00ns)   --->   "%keccak_context_addr_31 = getelementptr i64 %keccak_context, i64 0, i64 18"   --->   Operation 97 'getelementptr' 'keccak_context_addr_31' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 98 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_31, i64 0, i8 255"   --->   Operation 98 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_10 : Operation 99 [1/1] (0.00ns)   --->   "%keccak_context_addr_32 = getelementptr i64 %keccak_context, i64 0, i64 19"   --->   Operation 99 'getelementptr' 'keccak_context_addr_32' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 100 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_32, i64 0, i8 255"   --->   Operation 100 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_10 : Operation 101 [16/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 101 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 1.30>
+ST_11 : Operation 102 [1/1] (0.00ns)   --->   "%keccak_context_addr_33 = getelementptr i64 %keccak_context, i64 0, i64 20"   --->   Operation 102 'getelementptr' 'keccak_context_addr_33' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 103 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_33, i64 0, i8 255"   --->   Operation 103 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_11 : Operation 104 [1/1] (0.00ns)   --->   "%keccak_context_addr_34 = getelementptr i64 %keccak_context, i64 0, i64 21"   --->   Operation 104 'getelementptr' 'keccak_context_addr_34' <Predicate = true> <Delay = 0.00>
+ST_11 : Operation 105 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_34, i64 0, i8 255"   --->   Operation 105 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_11 : Operation 106 [15/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 106 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 1.30>
+ST_12 : Operation 107 [1/1] (0.00ns)   --->   "%keccak_context_addr_35 = getelementptr i64 %keccak_context, i64 0, i64 22"   --->   Operation 107 'getelementptr' 'keccak_context_addr_35' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 108 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_35, i64 0, i8 255"   --->   Operation 108 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_12 : Operation 109 [1/1] (0.00ns)   --->   "%keccak_context_addr_36 = getelementptr i64 %keccak_context, i64 0, i64 23"   --->   Operation 109 'getelementptr' 'keccak_context_addr_36' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 110 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_36, i64 0, i8 255"   --->   Operation 110 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_12 : Operation 111 [14/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 111 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 1.30>
+ST_13 : Operation 112 [1/1] (0.00ns)   --->   "%keccak_context_addr_37 = getelementptr i64 %keccak_context, i64 0, i64 24"   --->   Operation 112 'getelementptr' 'keccak_context_addr_37' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 113 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_37, i64 0, i8 255"   --->   Operation 113 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_13 : Operation 114 [1/1] (0.00ns)   --->   "%keccak_context_addr_38 = getelementptr i64 %keccak_context, i64 0, i64 25"   --->   Operation 114 'getelementptr' 'keccak_context_addr_38' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 115 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_38, i64 0, i8 255"   --->   Operation 115 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_13 : Operation 116 [13/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 116 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 1.30>
+ST_14 : Operation 117 [1/1] (0.00ns)   --->   "%keccak_context_addr_39 = getelementptr i64 %keccak_context, i64 0, i64 26"   --->   Operation 117 'getelementptr' 'keccak_context_addr_39' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 118 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_39, i64 0, i8 255"   --->   Operation 118 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_14 : Operation 119 [1/1] (0.00ns)   --->   "%keccak_context_addr_40 = getelementptr i64 %keccak_context, i64 0, i64 27"   --->   Operation 119 'getelementptr' 'keccak_context_addr_40' <Predicate = true> <Delay = 0.00>
+ST_14 : Operation 120 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_40, i64 0, i8 255"   --->   Operation 120 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_14 : Operation 121 [12/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 121 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 1.30>
+ST_15 : Operation 122 [1/1] (0.00ns)   --->   "%keccak_context_addr_41 = getelementptr i64 %keccak_context, i64 0, i64 28"   --->   Operation 122 'getelementptr' 'keccak_context_addr_41' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 123 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_41, i64 0, i8 255"   --->   Operation 123 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_15 : Operation 124 [1/1] (0.00ns)   --->   "%keccak_context_addr_42 = getelementptr i64 %keccak_context, i64 0, i64 29"   --->   Operation 124 'getelementptr' 'keccak_context_addr_42' <Predicate = true> <Delay = 0.00>
+ST_15 : Operation 125 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_42, i64 0, i8 255"   --->   Operation 125 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_15 : Operation 126 [11/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 126 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 1.30>
+ST_16 : Operation 127 [1/1] (0.00ns)   --->   "%keccak_context_addr_43 = getelementptr i64 %keccak_context, i64 0, i64 30"   --->   Operation 127 'getelementptr' 'keccak_context_addr_43' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 128 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_43, i64 0, i8 255"   --->   Operation 128 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_16 : Operation 129 [1/1] (0.00ns)   --->   "%keccak_context_addr_44 = getelementptr i64 %keccak_context, i64 0, i64 31"   --->   Operation 129 'getelementptr' 'keccak_context_addr_44' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 130 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_44, i64 0, i8 255"   --->   Operation 130 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_16 : Operation 131 [10/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 131 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 1.30>
+ST_17 : Operation 132 [1/1] (0.00ns)   --->   "%keccak_context_addr_45 = getelementptr i64 %keccak_context, i64 0, i64 32"   --->   Operation 132 'getelementptr' 'keccak_context_addr_45' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 133 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_45, i64 0, i8 255"   --->   Operation 133 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_17 : Operation 134 [1/1] (0.00ns)   --->   "%keccak_context_addr_46 = getelementptr i64 %keccak_context, i64 0, i64 33"   --->   Operation 134 'getelementptr' 'keccak_context_addr_46' <Predicate = true> <Delay = 0.00>
+ST_17 : Operation 135 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_46, i64 0, i8 255"   --->   Operation 135 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_17 : Operation 136 [9/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 136 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 1.30>
+ST_18 : Operation 137 [1/1] (0.00ns)   --->   "%keccak_context_addr_47 = getelementptr i64 %keccak_context, i64 0, i64 34"   --->   Operation 137 'getelementptr' 'keccak_context_addr_47' <Predicate = true> <Delay = 0.00>
+ST_18 : Operation 138 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_47, i64 0, i8 255"   --->   Operation 138 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_18 : Operation 139 [1/1] (0.00ns)   --->   "%keccak_context_addr_48 = getelementptr i64 %keccak_context, i64 0, i64 35"   --->   Operation 139 'getelementptr' 'keccak_context_addr_48' <Predicate = true> <Delay = 0.00>
+ST_18 : Operation 140 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_48, i64 0, i8 255"   --->   Operation 140 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_18 : Operation 141 [8/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 141 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 1.30>
+ST_19 : Operation 142 [1/1] (0.00ns)   --->   "%keccak_context_addr_49 = getelementptr i64 %keccak_context, i64 0, i64 36"   --->   Operation 142 'getelementptr' 'keccak_context_addr_49' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 143 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_49, i64 0, i8 255"   --->   Operation 143 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_19 : Operation 144 [1/1] (0.00ns)   --->   "%keccak_context_addr_50 = getelementptr i64 %keccak_context, i64 0, i64 37"   --->   Operation 144 'getelementptr' 'keccak_context_addr_50' <Predicate = true> <Delay = 0.00>
+ST_19 : Operation 145 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_50, i64 0, i8 255"   --->   Operation 145 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_19 : Operation 146 [7/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 146 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 1.30>
+ST_20 : Operation 147 [1/1] (0.00ns)   --->   "%keccak_context_addr_51 = getelementptr i64 %keccak_context, i64 0, i64 38"   --->   Operation 147 'getelementptr' 'keccak_context_addr_51' <Predicate = true> <Delay = 0.00>
+ST_20 : Operation 148 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_51, i64 0, i8 255"   --->   Operation 148 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_20 : Operation 149 [1/1] (0.00ns)   --->   "%keccak_context_addr_52 = getelementptr i64 %keccak_context, i64 0, i64 39"   --->   Operation 149 'getelementptr' 'keccak_context_addr_52' <Predicate = true> <Delay = 0.00>
+ST_20 : Operation 150 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_52, i64 0, i8 255"   --->   Operation 150 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_20 : Operation 151 [6/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 151 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 1.30>
+ST_21 : Operation 152 [1/1] (0.00ns)   --->   "%keccak_context_addr_53 = getelementptr i64 %keccak_context, i64 0, i64 40"   --->   Operation 152 'getelementptr' 'keccak_context_addr_53' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 153 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_53, i64 0, i8 255"   --->   Operation 153 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_21 : Operation 154 [1/1] (0.00ns)   --->   "%keccak_context_addr_54 = getelementptr i64 %keccak_context, i64 0, i64 41"   --->   Operation 154 'getelementptr' 'keccak_context_addr_54' <Predicate = true> <Delay = 0.00>
+ST_21 : Operation 155 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_54, i64 0, i8 255"   --->   Operation 155 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_21 : Operation 156 [5/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 156 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 1.30>
+ST_22 : Operation 157 [1/1] (0.00ns)   --->   "%keccak_context_addr_55 = getelementptr i64 %keccak_context, i64 0, i64 42"   --->   Operation 157 'getelementptr' 'keccak_context_addr_55' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 158 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_55, i64 0, i8 255"   --->   Operation 158 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_22 : Operation 159 [1/1] (0.00ns)   --->   "%keccak_context_addr_56 = getelementptr i64 %keccak_context, i64 0, i64 43"   --->   Operation 159 'getelementptr' 'keccak_context_addr_56' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 160 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_56, i64 0, i8 255"   --->   Operation 160 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_22 : Operation 161 [4/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 161 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 162 [1/1] (0.00ns)   --->   "%zext_ln215 = zext i16 %msglen_read" [keccak256.c:215]   --->   Operation 162 'zext' 'zext_ln215' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 163 [4/4] (0.69ns) (root node of the DSP)   --->   "%mul_ln215 = mul i33 %zext_ln215, i33 123362" [keccak256.c:215]   --->   Operation 163 'mul' 'mul_ln215' <Predicate = true> <Delay = 0.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.69> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 23 <SV = 22> <Delay = 1.30>
+ST_23 : Operation 164 [1/1] (0.00ns)   --->   "%keccak_context_addr_57 = getelementptr i64 %keccak_context, i64 0, i64 44"   --->   Operation 164 'getelementptr' 'keccak_context_addr_57' <Predicate = true> <Delay = 0.00>
+ST_23 : Operation 165 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_57, i64 0, i8 255"   --->   Operation 165 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_23 : Operation 166 [1/1] (0.00ns)   --->   "%keccak_context_addr_58 = getelementptr i64 %keccak_context, i64 0, i64 45"   --->   Operation 166 'getelementptr' 'keccak_context_addr_58' <Predicate = true> <Delay = 0.00>
+ST_23 : Operation 167 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_58, i64 0, i8 255"   --->   Operation 167 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_23 : Operation 168 [3/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 168 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 169 [3/4] (0.69ns) (root node of the DSP)   --->   "%mul_ln215 = mul i33 %zext_ln215, i33 123362" [keccak256.c:215]   --->   Operation 169 'mul' 'mul_ln215' <Predicate = true> <Delay = 0.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.69> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 24 <SV = 23> <Delay = 1.30>
+ST_24 : Operation 170 [1/1] (0.00ns)   --->   "%keccak_context_addr_59 = getelementptr i64 %keccak_context, i64 0, i64 46"   --->   Operation 170 'getelementptr' 'keccak_context_addr_59' <Predicate = true> <Delay = 0.00>
+ST_24 : Operation 171 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_59, i64 0, i8 255"   --->   Operation 171 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_24 : Operation 172 [1/1] (0.00ns)   --->   "%keccak_context_addr_60 = getelementptr i64 %keccak_context, i64 0, i64 47"   --->   Operation 172 'getelementptr' 'keccak_context_addr_60' <Predicate = true> <Delay = 0.00>
+ST_24 : Operation 173 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_60, i64 0, i8 255"   --->   Operation 173 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_24 : Operation 174 [2/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 174 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 175 [2/4] (0.69ns) (root node of the DSP)   --->   "%mul_ln215 = mul i33 %zext_ln215, i33 123362" [keccak256.c:215]   --->   Operation 175 'mul' 'mul_ln215' <Predicate = true> <Delay = 0.69> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.69> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 25 <SV = 24> <Delay = 2.60>
+ST_25 : Operation 176 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %state, void @empty_17, i32 0, i32 0, void @empty_18, i32 4294967295, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18"   --->   Operation 176 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 177 [1/1] (0.00ns)   --->   "%msg_read = read i19 @_ssdm_op_Read.ap_auto.i19, i19 %msg"   --->   Operation 177 'read' 'msg_read' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 178 [1/1] (0.00ns)   --->   "%specbramwithbyteenable_ln0 = specbramwithbyteenable void @_ssdm_op_SpecBRAMWithByteEnable, i64 %keccak_context"   --->   Operation 178 'specbramwithbyteenable' 'specbramwithbyteenable_ln0' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 179 [1/1] (0.00ns)   --->   "%specbramwithbyteenable_ln0 = specbramwithbyteenable void @_ssdm_op_SpecBRAMWithByteEnable, i256 %state"   --->   Operation 179 'specbramwithbyteenable' 'specbramwithbyteenable_ln0' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 180 [1/1] (0.00ns)   --->   "%keccak_context_addr_61 = getelementptr i64 %keccak_context, i64 0, i64 48"   --->   Operation 180 'getelementptr' 'keccak_context_addr_61' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 181 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_61, i64 0, i8 255"   --->   Operation 181 'store' 'store_ln0' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_25 : Operation 182 [1/20] (1.30ns)   --->   "%urem_ln186 = urem i16 %msglen_read, i16 136" [keccak256.c:186]   --->   Operation 182 'urem' 'urem_ln186' <Predicate = true> <Delay = 1.30> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 19> <II = 16> <Delay = 1.30> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 183 [1/1] (0.00ns)   --->   "%zext_ln186 = zext i16 %urem_ln186" [keccak256.c:186]   --->   Operation 183 'zext' 'zext_ln186' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 184 [1/1] (0.00ns)   --->   "%keccak_context_addr_62 = getelementptr i64 %keccak_context, i64 0, i64 49" [keccak256.c:186]   --->   Operation 184 'getelementptr' 'keccak_context_addr_62' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 185 [1/1] (1.29ns)   --->   "%store_ln186 = store void @_ssdm_op_Write.bram.p0i64, i6 %keccak_context_addr_62, i64 %zext_ln186, i8 3" [keccak256.c:186]   --->   Operation 185 'store' 'store_ln186' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_25 : Operation 186 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_ln215 = mul i33 %zext_ln215, i33 123362" [keccak256.c:215]   --->   Operation 186 'mul' 'mul_ln215' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 127 'DSP48' <Latency = 3> <II = 1> <Delay = 0.69> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_25 : Operation 187 [1/1] (0.00ns)   --->   "%trunc_ln = partselect i9 @_ssdm_op_PartSelect.i9.i33.i32.i32, i33 %mul_ln215, i32 24, i32 32" [keccak256.c:215]   --->   Operation 187 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
+ST_25 : Operation 188 [1/1] (0.95ns)   --->   "%icmp_ln217 = icmp_ugt  i16 %msglen_read, i16 135" [keccak256.c:217]   --->   Operation 188 'icmp' 'icmp_ln217' <Predicate = true> <Delay = 0.95> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 189 [1/1] (0.46ns)   --->   "%br_ln217 = br i1 %icmp_ln217, void %._crit_edge.i, void %.lr.ph.i" [keccak256.c:217]   --->   Operation 189 'br' 'br_ln217' <Predicate = true> <Delay = 0.46>
+ST_25 : Operation 190 [1/1] (0.00ns)   --->   "%trunc_ln217 = trunc i19 %msg_read" [keccak256.c:217]   --->   Operation 190 'trunc' 'trunc_ln217' <Predicate = (icmp_ln217)> <Delay = 0.00>
+ST_25 : Operation 191 [1/1] (0.56ns)   --->   "%icmp_ln219 = icmp_eq  i3 %trunc_ln217, i3 0" [keccak256.c:219]   --->   Operation 191 'icmp' 'icmp_ln219' <Predicate = (icmp_ln217)> <Delay = 0.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 192 [1/1] (0.00ns)   --->   "%empty = trunc i19 %msg_read"   --->   Operation 192 'trunc' 'empty' <Predicate = (icmp_ln217)> <Delay = 0.00>
+ST_25 : Operation 193 [1/1] (0.46ns)   --->   "%br_ln217 = br void" [keccak256.c:217]   --->   Operation 193 'br' 'br_ln217' <Predicate = (icmp_ln217)> <Delay = 0.46>
+
+State 26 <SV = 25> <Delay = 3.69>
+ST_26 : Operation 194 [1/1] (0.00ns)   --->   "%byteIndex = phi i16 0, void %.lr.ph.i, i16 %byteIndex_1, void"   --->   Operation 194 'phi' 'byteIndex' <Predicate = (icmp_ln217)> <Delay = 0.00>
+ST_26 : Operation 195 [1/1] (0.00ns)   --->   "%i = phi i9 0, void %.lr.ph.i, i9 %i_136, void"   --->   Operation 195 'phi' 'i' <Predicate = (icmp_ln217)> <Delay = 0.00>
+ST_26 : Operation 196 [1/1] (0.73ns)   --->   "%icmp_ln217_1 = icmp_eq  i9 %i, i9 %trunc_ln" [keccak256.c:217]   --->   Operation 196 'icmp' 'icmp_ln217_1' <Predicate = (icmp_ln217)> <Delay = 0.73> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 197 [1/1] (0.00ns)   --->   "%empty_357 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 1, i64 18446744073709551615, i64 0"   --->   Operation 197 'speclooptripcount' 'empty_357' <Predicate = (icmp_ln217)> <Delay = 0.00>
+ST_26 : Operation 198 [1/1] (0.90ns)   --->   "%i_136 = add i9 %i, i9 1" [keccak256.c:217]   --->   Operation 198 'add' 'i_136' <Predicate = (icmp_ln217)> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 199 [1/1] (0.00ns)   --->   "%br_ln217 = br i1 %icmp_ln217_1, void %.split9, void %._crit_edge.i.loopexit" [keccak256.c:217]   --->   Operation 199 'br' 'br_ln217' <Predicate = (icmp_ln217)> <Delay = 0.00>
+ST_26 : Operation 200 [1/1] (0.00ns)   --->   "%zext_ln217 = zext i16 %byteIndex" [keccak256.c:217]   --->   Operation 200 'zext' 'zext_ln217' <Predicate = (icmp_ln217 & !icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 201 [1/1] (0.00ns)   --->   "%specloopname_ln215 = specloopname void @_ssdm_op_SpecLoopName, void @empty_13" [keccak256.c:215]   --->   Operation 201 'specloopname' 'specloopname_ln215' <Predicate = (icmp_ln217 & !icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 202 [1/1] (0.00ns)   --->   "%trunc_ln219 = trunc i16 %byteIndex" [keccak256.c:219]   --->   Operation 202 'trunc' 'trunc_ln219' <Predicate = (icmp_ln217 & !icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 203 [1/1] (0.00ns)   --->   "%br_ln219 = br i1 %icmp_ln219, void %load-store-loop27.preheader, void %.preheader.preheader" [keccak256.c:219]   --->   Operation 203 'br' 'br_ln219' <Predicate = (icmp_ln217 & !icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 204 [1/1] (0.46ns)   --->   "%br_ln0 = br void %load-store-loop27"   --->   Operation 204 'br' 'br_ln0' <Predicate = (icmp_ln217 & !icmp_ln217_1 & !icmp_ln219)> <Delay = 0.46>
+ST_26 : Operation 205 [1/1] (0.46ns)   --->   "%br_ln0 = br void %.preheader"   --->   Operation 205 'br' 'br_ln0' <Predicate = (icmp_ln217 & !icmp_ln217_1 & icmp_ln219)> <Delay = 0.46>
+ST_26 : Operation 206 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i16 @_ssdm_op_BitConcatenate.i16.i9.i7, i9 %trunc_ln, i7 0" [keccak256.c:217]   --->   Operation 206 'bitconcatenate' 'shl_ln' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 207 [1/1] (1.12ns)   --->   "%sub_ln217 = sub i16 0, i16 %shl_ln" [keccak256.c:217]   --->   Operation 207 'sub' 'sub_ln217' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 208 [1/1] (0.00ns)   --->   "%shl_ln217_1 = bitconcatenate i12 @_ssdm_op_BitConcatenate.i12.i9.i3, i9 %trunc_ln, i3 0" [keccak256.c:217]   --->   Operation 208 'bitconcatenate' 'shl_ln217_1' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 209 [1/1] (0.00ns)   --->   "%zext_ln217_1 = zext i12 %shl_ln217_1" [keccak256.c:217]   --->   Operation 209 'zext' 'zext_ln217_1' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 0.00>
+ST_26 : Operation 210 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln217_1 = sub i16 %sub_ln217, i16 %zext_ln217_1" [keccak256.c:217]   --->   Operation 210 'sub' 'sub_ln217_1' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_26 : Operation 211 [1/1] (0.83ns) (root node of TernaryAdder)   --->   "%add_ln217 = add i16 %sub_ln217_1, i16 %msglen_read" [keccak256.c:217]   --->   Operation 211 'add' 'add_ln217' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 0.83> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_26 : Operation 212 [1/1] (0.46ns)   --->   "%br_ln236 = br void %._crit_edge.i" [keccak256.c:236]   --->   Operation 212 'br' 'br_ln236' <Predicate = (icmp_ln217 & icmp_ln217_1)> <Delay = 0.46>
+ST_26 : Operation 213 [1/1] (0.00ns)   --->   "%size_addr_1_lcssa_i = phi i16 %add_ln217, void %._crit_edge.i.loopexit, i16 %msglen_read, void %memset.loop25" [keccak256.c:217]   --->   Operation 213 'phi' 'size_addr_1_lcssa_i' <Predicate = (icmp_ln217_1) | (!icmp_ln217)> <Delay = 0.00>
+ST_26 : Operation 214 [1/1] (0.95ns)   --->   "%icmp_ln236 = icmp_eq  i16 %size_addr_1_lcssa_i, i16 0" [keccak256.c:236]   --->   Operation 214 'icmp' 'icmp_ln236' <Predicate = (icmp_ln217_1) | (!icmp_ln217)> <Delay = 0.95> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 215 [1/1] (0.00ns)   --->   "%br_ln236 = br i1 %icmp_ln236, void %loop-memcpy-expansion.preheader, void %keccak_update.exit" [keccak256.c:236]   --->   Operation 215 'br' 'br_ln236' <Predicate = (icmp_ln217_1) | (!icmp_ln217)> <Delay = 0.00>
+ST_26 : Operation 216 [1/1] (0.00ns)   --->   "%empty_371 = trunc i19 %msg_read"   --->   Operation 216 'trunc' 'empty_371' <Predicate = (icmp_ln217_1 & !icmp_ln236) | (!icmp_ln217 & !icmp_ln236)> <Delay = 0.00>
+ST_26 : Operation 217 [1/1] (0.46ns)   --->   "%br_ln0 = br void %loop-memcpy-expansion"   --->   Operation 217 'br' 'br_ln0' <Predicate = (icmp_ln217_1 & !icmp_ln236) | (!icmp_ln217 & !icmp_ln236)> <Delay = 0.46>
+
+State 27 <SV = 26> <Delay = 2.14>
+ST_27 : Operation 218 [1/1] (0.00ns)   --->   "%loop_index28 = phi i8 %empty_359, void %load-store-loop27.split, i8 0, void %load-store-loop27.preheader"   --->   Operation 218 'phi' 'loop_index28' <Predicate = true> <Delay = 0.00>
+ST_27 : Operation 219 [1/1] (0.87ns)   --->   "%empty_359 = add i8 %loop_index28, i8 1"   --->   Operation 219 'add' 'empty_359' <Predicate = true> <Delay = 0.87> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 220 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 220 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_27 : Operation 221 [1/1] (0.70ns)   --->   "%exitcond324 = icmp_eq  i8 %loop_index28, i8 136"   --->   Operation 221 'icmp' 'exitcond324' <Predicate = true> <Delay = 0.70> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 222 [1/1] (0.00ns)   --->   "%empty_360 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 136, i64 136, i64 136"   --->   Operation 222 'speclooptripcount' 'empty_360' <Predicate = true> <Delay = 0.00>
+ST_27 : Operation 223 [1/1] (0.00ns)   --->   "%br_ln0 = br i1 %exitcond324, void %load-store-loop27.split, void %memcpy-split26.preheader"   --->   Operation 223 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_27 : Operation 224 [1/1] (0.00ns)   --->   "%loop_index28_cast18 = zext i8 %loop_index28"   --->   Operation 224 'zext' 'loop_index28_cast18' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 225 [1/1] (0.00ns)   --->   "%loop_index28_cast13 = zext i8 %loop_index28"   --->   Operation 225 'zext' 'loop_index28_cast13' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 226 [1/1] (0.00ns)   --->   "%empty_361 = trunc i8 %loop_index28"   --->   Operation 226 'trunc' 'empty_361' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 227 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%tmp3 = add i19 %loop_index28_cast13, i19 %msg_read"   --->   Operation 227 'add' 'tmp3' <Predicate = (!exitcond324)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_27 : Operation 228 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%empty_362 = add i19 %tmp3, i19 %zext_ln217" [keccak256.c:217]   --->   Operation 228 'add' 'empty_362' <Predicate = (!exitcond324)> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_27 : Operation 229 [1/1] (0.00ns)   --->   "%tmp_s = partselect i14 @_ssdm_op_PartSelect.i14.i19.i32.i32, i19 %empty_362, i32 5, i32 18" [keccak256.c:217]   --->   Operation 229 'partselect' 'tmp_s' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 230 [1/1] (0.00ns)   --->   "%p_cast14_cast = zext i14 %tmp_s" [keccak256.c:217]   --->   Operation 230 'zext' 'p_cast14_cast' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 231 [1/1] (0.00ns)   --->   "%state_addr_152 = getelementptr i256 %state, i64 0, i64 %p_cast14_cast" [keccak256.c:217]   --->   Operation 231 'getelementptr' 'state_addr_152' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 232 [2/2] (1.29ns)   --->   "%state_load_184 = load i14 %state_addr_152" [keccak256.c:217]   --->   Operation 232 'load' 'state_load_184' <Predicate = (!exitcond324)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_27 : Operation 233 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%tmp4 = add i5 %empty, i5 %empty_361"   --->   Operation 233 'add' 'tmp4' <Predicate = (!exitcond324)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_27 : Operation 234 [1/1] (0.60ns) (root node of TernaryAdder)   --->   "%empty_363 = add i5 %tmp4, i5 %trunc_ln219" [keccak256.c:219]   --->   Operation 234 'add' 'empty_363' <Predicate = (!exitcond324)> <Delay = 0.60> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_27 : Operation 235 [1/1] (0.00ns)   --->   "%empty_366 = trunc i8 %loop_index28"   --->   Operation 235 'trunc' 'empty_366' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_27 : Operation 236 [1/1] (0.90ns)   --->   "%empty_367 = add i9 %loop_index28_cast18, i9 200"   --->   Operation 236 'add' 'empty_367' <Predicate = (!exitcond324)> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 237 [1/1] (0.00ns)   --->   "%tmp_413 = partselect i6 @_ssdm_op_PartSelect.i6.i9.i32.i32, i9 %empty_367, i32 3, i32 8"   --->   Operation 237 'partselect' 'tmp_413' <Predicate = (!exitcond324)> <Delay = 0.00>
+
+State 28 <SV = 27> <Delay = 4.03>
+ST_28 : Operation 238 [1/2] (1.29ns)   --->   "%state_load_184 = load i14 %state_addr_152" [keccak256.c:217]   --->   Operation 238 'load' 'state_load_184' <Predicate = (!exitcond324)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_28 : Operation 239 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%tmp_411 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %empty_363, i3 0" [keccak256.c:219]   --->   Operation 239 'bitconcatenate' 'tmp_411' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 240 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%p_cast42 = zext i8 %tmp_411" [keccak256.c:219]   --->   Operation 240 'zext' 'p_cast42' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 241 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%empty_364 = lshr i256 %state_load_184, i256 %p_cast42" [keccak256.c:217]   --->   Operation 241 'lshr' 'empty_364' <Predicate = (!exitcond324)> <Delay = 0.00> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 242 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%empty_365 = trunc i256 %empty_364" [keccak256.c:217]   --->   Operation 242 'trunc' 'empty_365' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 243 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%p_cast16_cast = zext i8 %empty_365" [keccak256.c:217]   --->   Operation 243 'zext' 'p_cast16_cast' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 244 [1/1] (0.00ns)   --->   "%loop_index28_cast17_cast43 = zext i3 %empty_366"   --->   Operation 244 'zext' 'loop_index28_cast17_cast43' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 245 [1/1] (0.62ns)   --->   "%empty_368 = shl i8 1, i8 %loop_index28_cast17_cast43"   --->   Operation 245 'shl' 'empty_368' <Predicate = (!exitcond324)> <Delay = 0.62> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 246 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%tmp_412 = bitconcatenate i6 @_ssdm_op_BitConcatenate.i6.i3.i3, i3 %empty_366, i3 0"   --->   Operation 246 'bitconcatenate' 'tmp_412' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 247 [1/1] (0.00ns) (grouped into LUT with out node empty_369)   --->   "%p_cast44 = zext i6 %tmp_412"   --->   Operation 247 'zext' 'p_cast44' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 248 [1/1] (1.44ns) (out node of the LUT)   --->   "%empty_369 = shl i64 %p_cast16_cast, i64 %p_cast44" [keccak256.c:217]   --->   Operation 248 'shl' 'empty_369' <Predicate = (!exitcond324)> <Delay = 1.44> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 249 [1/1] (0.00ns)   --->   "%p_cast45 = zext i6 %tmp_413"   --->   Operation 249 'zext' 'p_cast45' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 250 [1/1] (0.00ns)   --->   "%keccak_context_addr_64 = getelementptr i64 %keccak_context, i64 0, i64 %p_cast45"   --->   Operation 250 'getelementptr' 'keccak_context_addr_64' <Predicate = (!exitcond324)> <Delay = 0.00>
+ST_28 : Operation 251 [1/1] (1.29ns)   --->   "%store_ln217 = store void @_ssdm_op_Write.bram.p0i64, i6 %keccak_context_addr_64, i64 %empty_369, i8 %empty_368" [keccak256.c:217]   --->   Operation 251 'store' 'store_ln217' <Predicate = (!exitcond324)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_28 : Operation 252 [1/1] (0.00ns)   --->   "%br_ln0 = br void %load-store-loop27"   --->   Operation 252 'br' 'br_ln0' <Predicate = (!exitcond324)> <Delay = 0.00>
+
+State 29 <SV = 27> <Delay = 0.46>
+ST_29 : Operation 253 [1/1] (0.46ns)   --->   "%br_ln0 = br void %memcpy-split26"   --->   Operation 253 'br' 'br_ln0' <Predicate = true> <Delay = 0.46>
+
+State 30 <SV = 28> <Delay = 2.19>
+ST_30 : Operation 254 [1/1] (0.00ns)   --->   "%i_135 = phi i5 %add_ln162_1, void %.split5, i5 0, void %memcpy-split26.preheader" [keccak256.c:162]   --->   Operation 254 'phi' 'i_135' <Predicate = true> <Delay = 0.00>
+ST_30 : Operation 255 [1/1] (0.82ns)   --->   "%add_ln162_1 = add i5 %i_135, i5 1" [keccak256.c:162]   --->   Operation 255 'add' 'add_ln162_1' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 256 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 256 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_30 : Operation 257 [1/1] (0.72ns)   --->   "%icmp_ln162_1 = icmp_eq  i5 %i_135, i5 17" [keccak256.c:162]   --->   Operation 257 'icmp' 'icmp_ln162_1' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 258 [1/1] (0.00ns)   --->   "%empty_370 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 17, i64 17, i64 17"   --->   Operation 258 'speclooptripcount' 'empty_370' <Predicate = true> <Delay = 0.00>
+ST_30 : Operation 259 [1/1] (0.00ns)   --->   "%br_ln162 = br i1 %icmp_ln162_1, void %.split5, void %sha3_process_block.exit31.i" [keccak256.c:162]   --->   Operation 259 'br' 'br_ln162' <Predicate = true> <Delay = 0.00>
+ST_30 : Operation 260 [1/1] (0.00ns)   --->   "%i_200_cast41 = zext i5 %i_135" [keccak256.c:162]   --->   Operation 260 'zext' 'i_200_cast41' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 261 [1/1] (0.00ns)   --->   "%shl_ln163_2 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %i_135, i3 0" [keccak256.c:163]   --->   Operation 261 'bitconcatenate' 'shl_ln163_2' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 262 [1/1] (0.00ns)   --->   "%zext_ln163_5 = zext i8 %shl_ln163_2" [keccak256.c:163]   --->   Operation 262 'zext' 'zext_ln163_5' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 263 [1/1] (0.90ns)   --->   "%add_ln163_1 = add i9 %zext_ln163_5, i9 200" [keccak256.c:163]   --->   Operation 263 'add' 'add_ln163_1' <Predicate = (!icmp_ln162_1)> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 264 [1/1] (0.00ns)   --->   "%lshr_ln163_2 = partselect i6 @_ssdm_op_PartSelect.i6.i9.i32.i32, i9 %add_ln163_1, i32 3, i32 8" [keccak256.c:163]   --->   Operation 264 'partselect' 'lshr_ln163_2' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 265 [1/1] (0.00ns)   --->   "%zext_ln163_1 = zext i6 %lshr_ln163_2" [keccak256.c:163]   --->   Operation 265 'zext' 'zext_ln163_1' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 266 [1/1] (0.00ns)   --->   "%keccak_context_addr_66 = getelementptr i64 %keccak_context, i64 0, i64 %zext_ln163_1" [keccak256.c:163]   --->   Operation 266 'getelementptr' 'keccak_context_addr_66' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 267 [2/2] (1.29ns)   --->   "%keccak_context_load_20 = load i6 %keccak_context_addr_66" [keccak256.c:163]   --->   Operation 267 'load' 'keccak_context_load_20' <Predicate = (!icmp_ln162_1)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_30 : Operation 268 [1/1] (0.00ns)   --->   "%keccak_context_addr_67 = getelementptr i64 %keccak_context, i64 0, i64 %i_200_cast41" [keccak256.c:163]   --->   Operation 268 'getelementptr' 'keccak_context_addr_67' <Predicate = (!icmp_ln162_1)> <Delay = 0.00>
+ST_30 : Operation 269 [2/2] (1.29ns)   --->   "%keccak_context_load_21 = load i6 %keccak_context_addr_67" [keccak256.c:163]   --->   Operation 269 'load' 'keccak_context_load_21' <Predicate = (!icmp_ln162_1)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 31 <SV = 29> <Delay = 2.92>
+ST_31 : Operation 270 [1/1] (0.00ns)   --->   "%specloopname_ln162 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [keccak256.c:162]   --->   Operation 270 'specloopname' 'specloopname_ln162' <Predicate = true> <Delay = 0.00>
+ST_31 : Operation 271 [1/2] (1.29ns)   --->   "%keccak_context_load_20 = load i6 %keccak_context_addr_66" [keccak256.c:163]   --->   Operation 271 'load' 'keccak_context_load_20' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_31 : Operation 272 [1/2] (1.29ns)   --->   "%keccak_context_load_21 = load i6 %keccak_context_addr_67" [keccak256.c:163]   --->   Operation 272 'load' 'keccak_context_load_21' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_31 : Operation 273 [1/1] (0.32ns)   --->   "%xor_ln163_1 = xor i64 %keccak_context_load_21, i64 %keccak_context_load_20" [keccak256.c:163]   --->   Operation 273 'xor' 'xor_ln163_1' <Predicate = true> <Delay = 0.32> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.32> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 274 [1/1] (1.29ns)   --->   "%store_ln163 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_67, i64 %xor_ln163_1, i8 255" [keccak256.c:163]   --->   Operation 274 'store' 'store_ln163' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_31 : Operation 275 [1/1] (0.00ns)   --->   "%br_ln0 = br void %memcpy-split26"   --->   Operation 275 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+State 32 <SV = 29> <Delay = 0.50>
+ST_32 : Operation 276 [2/2] (0.50ns)   --->   "%call_ln167 = call void @sha3_permutation.1, i64 %keccak_context, i7 %constants" [keccak256.c:167]   --->   Operation 276 'call' 'call_ln167' <Predicate = true> <Delay = 0.50> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 33 <SV = 30> <Delay = 1.12>
+ST_33 : Operation 277 [1/2] (0.00ns)   --->   "%call_ln167 = call void @sha3_permutation.1, i64 %keccak_context, i7 %constants" [keccak256.c:167]   --->   Operation 277 'call' 'call_ln167' <Predicate = (!icmp_ln219)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_33 : Operation 278 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 278 'br' 'br_ln0' <Predicate = (!icmp_ln219)> <Delay = 0.00>
+ST_33 : Operation 279 [1/1] (1.12ns)   --->   "%byteIndex_1 = add i16 %byteIndex, i16 136" [keccak256.c:232]   --->   Operation 279 'add' 'byteIndex_1' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 280 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 280 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+State 34 <SV = 26> <Delay = 2.14>
+ST_34 : Operation 281 [1/1] (0.00ns)   --->   "%i_134 = phi i5 %add_ln162, void %.split7, i5 0, void %.preheader.preheader" [keccak256.c:162]   --->   Operation 281 'phi' 'i_134' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 282 [1/1] (0.82ns)   --->   "%add_ln162 = add i5 %i_134, i5 1" [keccak256.c:162]   --->   Operation 282 'add' 'add_ln162' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 283 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 283 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 284 [1/1] (0.72ns)   --->   "%icmp_ln162 = icmp_eq  i5 %i_134, i5 17" [keccak256.c:162]   --->   Operation 284 'icmp' 'icmp_ln162' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 285 [1/1] (0.00ns)   --->   "%empty_358 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 17, i64 17, i64 17"   --->   Operation 285 'speclooptripcount' 'empty_358' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 286 [1/1] (0.00ns)   --->   "%br_ln162 = br i1 %icmp_ln162, void %.split7, void %sha3_process_block.exit22.i" [keccak256.c:162]   --->   Operation 286 'br' 'br_ln162' <Predicate = true> <Delay = 0.00>
+ST_34 : Operation 287 [1/1] (0.00ns)   --->   "%i_199_cast39 = zext i5 %i_134" [keccak256.c:162]   --->   Operation 287 'zext' 'i_199_cast39' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 288 [1/1] (0.00ns)   --->   "%shl_ln44 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %i_134, i3 0" [keccak256.c:163]   --->   Operation 288 'bitconcatenate' 'shl_ln44' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 289 [1/1] (0.00ns)   --->   "%zext_ln163 = zext i8 %shl_ln44" [keccak256.c:163]   --->   Operation 289 'zext' 'zext_ln163' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 290 [1/1] (0.00ns)   --->   "%shl_ln163 = shl i5 %i_134, i5 3" [keccak256.c:163]   --->   Operation 290 'shl' 'shl_ln163' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 291 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln163_3 = add i19 %zext_ln163, i19 %msg_read" [keccak256.c:163]   --->   Operation 291 'add' 'add_ln163_3' <Predicate = (!icmp_ln162)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_34 : Operation 292 [1/1] (0.84ns) (root node of TernaryAdder)   --->   "%add_ln163 = add i19 %add_ln163_3, i19 %zext_ln217" [keccak256.c:163]   --->   Operation 292 'add' 'add_ln163' <Predicate = (!icmp_ln162)> <Delay = 0.84> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_34 : Operation 293 [1/1] (0.00ns)   --->   "%lshr_ln163_1 = partselect i14 @_ssdm_op_PartSelect.i14.i19.i32.i32, i19 %add_ln163, i32 5, i32 18" [keccak256.c:163]   --->   Operation 293 'partselect' 'lshr_ln163_1' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 294 [1/1] (0.00ns)   --->   "%zext_ln163_3 = zext i14 %lshr_ln163_1" [keccak256.c:163]   --->   Operation 294 'zext' 'zext_ln163_3' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 295 [1/1] (0.00ns)   --->   "%state_addr = getelementptr i256 %state, i64 0, i64 %zext_ln163_3" [keccak256.c:163]   --->   Operation 295 'getelementptr' 'state_addr' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 296 [2/2] (1.29ns)   --->   "%state_load = load i14 %state_addr" [keccak256.c:163]   --->   Operation 296 'load' 'state_load' <Predicate = (!icmp_ln162)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_34 : Operation 297 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln163_5 = add i5 %empty, i5 %shl_ln163" [keccak256.c:163]   --->   Operation 297 'add' 'add_ln163_5' <Predicate = (!icmp_ln162)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_34 : Operation 298 [1/1] (0.60ns) (root node of TernaryAdder)   --->   "%add_ln163_4 = add i5 %add_ln163_5, i5 %trunc_ln219" [keccak256.c:163]   --->   Operation 298 'add' 'add_ln163_4' <Predicate = (!icmp_ln162)> <Delay = 0.60> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.41> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_34 : Operation 299 [1/1] (0.00ns)   --->   "%keccak_context_addr_63 = getelementptr i64 %keccak_context, i64 0, i64 %i_199_cast39" [keccak256.c:163]   --->   Operation 299 'getelementptr' 'keccak_context_addr_63' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_34 : Operation 300 [2/2] (1.29ns)   --->   "%keccak_context_load = load i6 %keccak_context_addr_63" [keccak256.c:163]   --->   Operation 300 'load' 'keccak_context_load' <Predicate = (!icmp_ln162)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 35 <SV = 27> <Delay = 4.03>
+ST_35 : Operation 301 [1/1] (0.00ns)   --->   "%specloopname_ln162 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [keccak256.c:162]   --->   Operation 301 'specloopname' 'specloopname_ln162' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_35 : Operation 302 [1/2] (1.29ns)   --->   "%state_load = load i14 %state_addr" [keccak256.c:163]   --->   Operation 302 'load' 'state_load' <Predicate = (!icmp_ln162)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_35 : Operation 303 [1/1] (0.00ns) (grouped into LUT with out node xor_ln163)   --->   "%shl_ln163_1 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %add_ln163_4, i3 0" [keccak256.c:163]   --->   Operation 303 'bitconcatenate' 'shl_ln163_1' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_35 : Operation 304 [1/1] (0.00ns) (grouped into LUT with out node xor_ln163)   --->   "%zext_ln163_4 = zext i8 %shl_ln163_1" [keccak256.c:163]   --->   Operation 304 'zext' 'zext_ln163_4' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_35 : Operation 305 [1/1] (0.00ns) (grouped into LUT with out node xor_ln163)   --->   "%lshr_ln163 = lshr i256 %state_load, i256 %zext_ln163_4" [keccak256.c:163]   --->   Operation 305 'lshr' 'lshr_ln163' <Predicate = (!icmp_ln162)> <Delay = 0.00> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 306 [1/1] (0.00ns) (grouped into LUT with out node xor_ln163)   --->   "%trunc_ln163 = trunc i256 %lshr_ln163" [keccak256.c:163]   --->   Operation 306 'trunc' 'trunc_ln163' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+ST_35 : Operation 307 [1/2] (1.29ns)   --->   "%keccak_context_load = load i6 %keccak_context_addr_63" [keccak256.c:163]   --->   Operation 307 'load' 'keccak_context_load' <Predicate = (!icmp_ln162)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_35 : Operation 308 [1/1] (1.44ns) (out node of the LUT)   --->   "%xor_ln163 = xor i64 %keccak_context_load, i64 %trunc_ln163" [keccak256.c:163]   --->   Operation 308 'xor' 'xor_ln163' <Predicate = (!icmp_ln162)> <Delay = 1.44> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.32> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 309 [1/1] (1.29ns)   --->   "%store_ln163 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_63, i64 %xor_ln163, i8 255" [keccak256.c:163]   --->   Operation 309 'store' 'store_ln163' <Predicate = (!icmp_ln162)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_35 : Operation 310 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.preheader"   --->   Operation 310 'br' 'br_ln0' <Predicate = (!icmp_ln162)> <Delay = 0.00>
+
+State 36 <SV = 27> <Delay = 0.50>
+ST_36 : Operation 311 [2/2] (0.50ns)   --->   "%call_ln167 = call void @sha3_permutation.1, i64 %keccak_context, i7 %constants" [keccak256.c:167]   --->   Operation 311 'call' 'call_ln167' <Predicate = true> <Delay = 0.50> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 37 <SV = 28> <Delay = 0.00>
+ST_37 : Operation 312 [1/2] (0.00ns)   --->   "%call_ln167 = call void @sha3_permutation.1, i64 %keccak_context, i7 %constants" [keccak256.c:167]   --->   Operation 312 'call' 'call_ln167' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_37 : Operation 313 [1/1] (0.00ns)   --->   "%br_ln223 = br void" [keccak256.c:223]   --->   Operation 313 'br' 'br_ln223' <Predicate = true> <Delay = 0.00>
+
+State 38 <SV = 26> <Delay = 2.42>
+ST_38 : Operation 314 [1/1] (0.00ns)   --->   "%loop_index29 = phi i16 %empty_372, void %loop-memcpy-expansion.split, i16 0, void %loop-memcpy-expansion.preheader"   --->   Operation 314 'phi' 'loop_index29' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 315 [1/1] (1.12ns)   --->   "%empty_372 = add i16 %loop_index29, i16 1"   --->   Operation 315 'add' 'empty_372' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 316 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 316 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 317 [1/1] (0.95ns)   --->   "%exitcond313 = icmp_eq  i16 %loop_index29, i16 %size_addr_1_lcssa_i" [keccak256.c:217]   --->   Operation 317 'icmp' 'exitcond313' <Predicate = true> <Delay = 0.95> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 318 [1/1] (0.00ns)   --->   "%empty_373 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 0, i64 65535, i64 0"   --->   Operation 318 'speclooptripcount' 'empty_373' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 319 [1/1] (0.00ns)   --->   "%br_ln217 = br i1 %exitcond313, void %loop-memcpy-expansion.split, void %keccak_update.exit.loopexit" [keccak256.c:217]   --->   Operation 319 'br' 'br_ln217' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 320 [1/1] (0.00ns)   --->   "%empty_374 = trunc i16 %loop_index29"   --->   Operation 320 'trunc' 'empty_374' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 321 [1/1] (0.00ns)   --->   "%loop_index29_cast6 = zext i16 %loop_index29"   --->   Operation 321 'zext' 'loop_index29_cast6' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 322 [1/1] (0.00ns)   --->   "%empty_375 = trunc i16 %loop_index29"   --->   Operation 322 'trunc' 'empty_375' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 323 [1/1] (1.12ns)   --->   "%empty_376 = add i19 %loop_index29_cast6, i19 %msg_read"   --->   Operation 323 'add' 'empty_376' <Predicate = (!exitcond313)> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 324 [1/1] (0.00ns)   --->   "%tmp_414 = partselect i14 @_ssdm_op_PartSelect.i14.i19.i32.i32, i19 %empty_376, i32 5, i32 18"   --->   Operation 324 'partselect' 'tmp_414' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 325 [1/1] (0.00ns)   --->   "%p_cast7_cast = zext i14 %tmp_414"   --->   Operation 325 'zext' 'p_cast7_cast' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 326 [1/1] (0.00ns)   --->   "%state_addr_153 = getelementptr i256 %state, i64 0, i64 %p_cast7_cast"   --->   Operation 326 'getelementptr' 'state_addr_153' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 327 [2/2] (1.29ns)   --->   "%state_load_185 = load i14 %state_addr_153"   --->   Operation 327 'load' 'state_load_185' <Predicate = (!exitcond313)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_38 : Operation 328 [1/1] (0.82ns)   --->   "%empty_377 = add i5 %empty_375, i5 %empty_371"   --->   Operation 328 'add' 'empty_377' <Predicate = (!exitcond313)> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 329 [1/1] (0.00ns)   --->   "%empty_380 = trunc i16 %loop_index29"   --->   Operation 329 'trunc' 'empty_380' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_38 : Operation 330 [1/1] (0.90ns)   --->   "%empty_381 = add i9 %empty_374, i9 200"   --->   Operation 330 'add' 'empty_381' <Predicate = (!exitcond313)> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 331 [1/1] (0.00ns)   --->   "%tmp_417 = partselect i6 @_ssdm_op_PartSelect.i6.i9.i32.i32, i9 %empty_381, i32 3, i32 8"   --->   Operation 331 'partselect' 'tmp_417' <Predicate = (!exitcond313)> <Delay = 0.00>
+
+State 39 <SV = 27> <Delay = 4.03>
+ST_39 : Operation 332 [1/2] (1.29ns)   --->   "%state_load_185 = load i14 %state_addr_153"   --->   Operation 332 'load' 'state_load_185' <Predicate = (!exitcond313)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_39 : Operation 333 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%tmp_415 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %empty_377, i3 0"   --->   Operation 333 'bitconcatenate' 'tmp_415' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 334 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%p_cast35 = zext i8 %tmp_415"   --->   Operation 334 'zext' 'p_cast35' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 335 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%empty_378 = lshr i256 %state_load_185, i256 %p_cast35"   --->   Operation 335 'lshr' 'empty_378' <Predicate = (!exitcond313)> <Delay = 0.00> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 336 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%empty_379 = trunc i256 %empty_378"   --->   Operation 336 'trunc' 'empty_379' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 337 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%p_cast9_cast = zext i8 %empty_379"   --->   Operation 337 'zext' 'p_cast9_cast' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 338 [1/1] (0.00ns)   --->   "%loop_index29_cast10_cast36 = zext i3 %empty_380"   --->   Operation 338 'zext' 'loop_index29_cast10_cast36' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 339 [1/1] (0.62ns)   --->   "%empty_382 = shl i8 1, i8 %loop_index29_cast10_cast36"   --->   Operation 339 'shl' 'empty_382' <Predicate = (!exitcond313)> <Delay = 0.62> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 340 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%tmp_416 = bitconcatenate i6 @_ssdm_op_BitConcatenate.i6.i3.i3, i3 %empty_380, i3 0"   --->   Operation 340 'bitconcatenate' 'tmp_416' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 341 [1/1] (0.00ns) (grouped into LUT with out node empty_383)   --->   "%p_cast37 = zext i6 %tmp_416"   --->   Operation 341 'zext' 'p_cast37' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 342 [1/1] (1.44ns) (out node of the LUT)   --->   "%empty_383 = shl i64 %p_cast9_cast, i64 %p_cast37"   --->   Operation 342 'shl' 'empty_383' <Predicate = (!exitcond313)> <Delay = 1.44> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 343 [1/1] (0.00ns)   --->   "%p_cast38 = zext i6 %tmp_417"   --->   Operation 343 'zext' 'p_cast38' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 344 [1/1] (0.00ns)   --->   "%keccak_context_addr_65 = getelementptr i64 %keccak_context, i64 0, i64 %p_cast38"   --->   Operation 344 'getelementptr' 'keccak_context_addr_65' <Predicate = (!exitcond313)> <Delay = 0.00>
+ST_39 : Operation 345 [1/1] (1.29ns)   --->   "%store_ln0 = store void @_ssdm_op_Write.bram.p0i64, i6 %keccak_context_addr_65, i64 %empty_383, i8 %empty_382"   --->   Operation 345 'store' 'store_ln0' <Predicate = (!exitcond313)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_39 : Operation 346 [1/1] (0.00ns)   --->   "%br_ln0 = br void %loop-memcpy-expansion"   --->   Operation 346 'br' 'br_ln0' <Predicate = (!exitcond313)> <Delay = 0.00>
+
+State 40 <SV = 27> <Delay = 1.29>
+ST_40 : Operation 347 [1/1] (0.00ns)   --->   "%br_ln0 = br void %keccak_update.exit"   --->   Operation 347 'br' 'br_ln0' <Predicate = (!icmp_ln236)> <Delay = 0.00>
+ST_40 : Operation 348 [2/2] (1.29ns)   --->   "%keccak_context_load_19 = load i6 %keccak_context_addr_62" [keccak256.c:253]   --->   Operation 348 'load' 'keccak_context_load_19' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 41 <SV = 28> <Delay = 2.41>
+ST_41 : Operation 349 [1/2] (1.29ns)   --->   "%keccak_context_load_19 = load i6 %keccak_context_addr_62" [keccak256.c:253]   --->   Operation 349 'load' 'keccak_context_load_19' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_41 : Operation 350 [1/1] (0.00ns)   --->   "%trunc_ln253 = trunc i64 %keccak_context_load_19" [keccak256.c:253]   --->   Operation 350 'trunc' 'trunc_ln253' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 351 [1/1] (0.00ns)   --->   "%zext_ln253 = zext i16 %trunc_ln253" [keccak256.c:253]   --->   Operation 351 'zext' 'zext_ln253' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 352 [1/1] (0.00ns)   --->   "%trunc_ln253_1 = trunc i64 %keccak_context_load_19" [keccak256.c:253]   --->   Operation 352 'trunc' 'trunc_ln253_1' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 353 [1/1] (1.12ns)   --->   "%sub_ln253 = sub i17 136, i17 %zext_ln253" [keccak256.c:253]   --->   Operation 353 'sub' 'sub_ln253' <Predicate = true> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_41 : Operation 354 [1/1] (0.00ns)   --->   "%sext_ln253 = sext i17 %sub_ln253" [keccak256.c:253]   --->   Operation 354 'sext' 'sext_ln253' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 355 [1/1] (0.00ns)   --->   "%empty_384 = trunc i64 %keccak_context_load_19" [keccak256.c:253]   --->   Operation 355 'trunc' 'empty_384' <Predicate = true> <Delay = 0.00>
+ST_41 : Operation 356 [1/1] (0.90ns)   --->   "%tmp5 = add i9 %trunc_ln253_1, i9 200" [keccak256.c:253]   --->   Operation 356 'add' 'tmp5' <Predicate = true> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_41 : Operation 357 [1/1] (0.46ns)   --->   "%br_ln0 = br void %memset.loop"   --->   Operation 357 'br' 'br_ln0' <Predicate = true> <Delay = 0.46>
+
+State 42 <SV = 29> <Delay = 2.63>
+ST_42 : Operation 358 [1/1] (0.00ns)   --->   "%empty_385 = phi i64 %empty_386, void %memset.loop.split, i64 0, void %keccak_update.exit"   --->   Operation 358 'phi' 'empty_385' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 359 [1/1] (1.36ns)   --->   "%empty_386 = add i64 %empty_385, i64 1"   --->   Operation 359 'add' 'empty_386' <Predicate = true> <Delay = 1.36> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 360 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 360 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 361 [1/1] (1.14ns)   --->   "%exitcond = icmp_eq  i64 %empty_385, i64 %sext_ln253" [keccak256.c:253]   --->   Operation 361 'icmp' 'exitcond' <Predicate = true> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 362 [1/1] (0.00ns)   --->   "%br_ln253 = br i1 %exitcond, void %memset.loop.split, void %split.loopexit" [keccak256.c:253]   --->   Operation 362 'br' 'br_ln253' <Predicate = true> <Delay = 0.00>
+ST_42 : Operation 363 [1/1] (0.00ns)   --->   "%empty_387 = trunc i64 %empty_385"   --->   Operation 363 'trunc' 'empty_387' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_42 : Operation 364 [1/1] (0.00ns)   --->   "%empty_388 = trunc i64 %empty_385"   --->   Operation 364 'trunc' 'empty_388' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_42 : Operation 365 [1/1] (0.90ns)   --->   "%empty_389 = add i9 %tmp5, i9 %empty_387" [keccak256.c:253]   --->   Operation 365 'add' 'empty_389' <Predicate = (!exitcond)> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 366 [1/1] (0.71ns)   --->   "%empty_390 = add i3 %empty_384, i3 %empty_388" [keccak256.c:253]   --->   Operation 366 'add' 'empty_390' <Predicate = (!exitcond)> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 367 [1/1] (0.00ns)   --->   "%p_cast34 = zext i3 %empty_390" [keccak256.c:253]   --->   Operation 367 'zext' 'p_cast34' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_42 : Operation 368 [1/1] (0.62ns)   --->   "%empty_391 = shl i8 1, i8 %p_cast34" [keccak256.c:253]   --->   Operation 368 'shl' 'empty_391' <Predicate = (!exitcond)> <Delay = 0.62> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 369 [1/1] (0.00ns)   --->   "%tmp_418 = partselect i6 @_ssdm_op_PartSelect.i6.i9.i32.i32, i9 %empty_389, i32 3, i32 8" [keccak256.c:253]   --->   Operation 369 'partselect' 'tmp_418' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_42 : Operation 370 [1/1] (0.00ns)   --->   "%p_cast5_cast = zext i6 %tmp_418" [keccak256.c:253]   --->   Operation 370 'zext' 'p_cast5_cast' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_42 : Operation 371 [1/1] (0.00ns)   --->   "%keccak_context_addr_69 = getelementptr i64 %keccak_context, i64 0, i64 %p_cast5_cast" [keccak256.c:253]   --->   Operation 371 'getelementptr' 'keccak_context_addr_69' <Predicate = (!exitcond)> <Delay = 0.00>
+ST_42 : Operation 372 [1/1] (1.29ns)   --->   "%store_ln253 = store void @_ssdm_op_Write.bram.p0i64, i6 %keccak_context_addr_69, i64 0, i8 %empty_391" [keccak256.c:253]   --->   Operation 372 'store' 'store_ln253' <Predicate = (!exitcond)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_42 : Operation 373 [1/1] (0.00ns)   --->   "%br_ln0 = br void %memset.loop"   --->   Operation 373 'br' 'br_ln0' <Predicate = (!exitcond)> <Delay = 0.00>
+
+State 43 <SV = 30> <Delay = 1.29>
+ST_43 : Operation 374 [2/2] (1.29ns)   --->   "%keccak_context_load_22 = load i6 %keccak_context_addr_62" [keccak256.c:254]   --->   Operation 374 'load' 'keccak_context_load_22' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 44 <SV = 31> <Delay = 3.49>
+ST_44 : Operation 375 [1/2] (1.29ns)   --->   "%keccak_context_load_22 = load i6 %keccak_context_addr_62" [keccak256.c:254]   --->   Operation 375 'load' 'keccak_context_load_22' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_44 : Operation 376 [1/1] (0.00ns)   --->   "%trunc_ln254 = trunc i64 %keccak_context_load_22" [keccak256.c:254]   --->   Operation 376 'trunc' 'trunc_ln254' <Predicate = true> <Delay = 0.00>
+ST_44 : Operation 377 [1/1] (0.00ns)   --->   "%trunc_ln254_2 = trunc i64 %keccak_context_load_22" [keccak256.c:254]   --->   Operation 377 'trunc' 'trunc_ln254_2' <Predicate = true> <Delay = 0.00>
+ST_44 : Operation 378 [1/1] (0.90ns)   --->   "%add_ln254 = add i9 %trunc_ln254, i9 200" [keccak256.c:254]   --->   Operation 378 'add' 'add_ln254' <Predicate = true> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 379 [1/1] (0.00ns)   --->   "%lshr_ln = partselect i6 @_ssdm_op_PartSelect.i6.i9.i32.i32, i9 %add_ln254, i32 3, i32 8" [keccak256.c:254]   --->   Operation 379 'partselect' 'lshr_ln' <Predicate = true> <Delay = 0.00>
+ST_44 : Operation 380 [1/1] (0.00ns)   --->   "%zext_ln254 = zext i6 %lshr_ln" [keccak256.c:254]   --->   Operation 380 'zext' 'zext_ln254' <Predicate = true> <Delay = 0.00>
+ST_44 : Operation 381 [1/1] (0.00ns)   --->   "%keccak_context_addr_68 = getelementptr i64 %keccak_context, i64 0, i64 %zext_ln254" [keccak256.c:254]   --->   Operation 381 'getelementptr' 'keccak_context_addr_68' <Predicate = true> <Delay = 0.00>
+ST_44 : Operation 382 [2/2] (1.29ns)   --->   "%keccak_context_load_23 = load i6 %keccak_context_addr_68" [keccak256.c:254]   --->   Operation 382 'load' 'keccak_context_load_23' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 45 <SV = 32> <Delay = 3.90>
+ST_45 : Operation 383 [1/2] (1.29ns)   --->   "%keccak_context_load_23 = load i6 %keccak_context_addr_68" [keccak256.c:254]   --->   Operation 383 'load' 'keccak_context_load_23' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_45 : Operation 384 [1/1] (0.00ns)   --->   "%shl_ln45 = bitconcatenate i6 @_ssdm_op_BitConcatenate.i6.i3.i3, i3 %trunc_ln254_2, i3 0" [keccak256.c:254]   --->   Operation 384 'bitconcatenate' 'shl_ln45' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 385 [1/1] (0.00ns)   --->   "%zext_ln254_4 = zext i6 %shl_ln45" [keccak256.c:254]   --->   Operation 385 'zext' 'zext_ln254_4' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 386 [1/1] (0.00ns) (grouped into LUT with out node shl_ln254_1)   --->   "%lshr_ln254 = lshr i64 %keccak_context_load_23, i64 %zext_ln254_4" [keccak256.c:254]   --->   Operation 386 'lshr' 'lshr_ln254' <Predicate = true> <Delay = 0.00> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 387 [1/1] (0.00ns) (grouped into LUT with out node shl_ln254_1)   --->   "%trunc_ln254_3 = trunc i64 %lshr_ln254" [keccak256.c:254]   --->   Operation 387 'trunc' 'trunc_ln254_3' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 388 [1/1] (0.00ns) (grouped into LUT with out node shl_ln254_1)   --->   "%or_ln254 = or i8 %trunc_ln254_3, i8 1" [keccak256.c:254]   --->   Operation 388 'or' 'or_ln254' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 389 [1/1] (0.00ns) (grouped into LUT with out node shl_ln254_1)   --->   "%zext_ln254_2 = zext i8 %or_ln254" [keccak256.c:254]   --->   Operation 389 'zext' 'zext_ln254_2' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 390 [1/1] (0.00ns)   --->   "%zext_ln254_3 = zext i3 %trunc_ln254_2" [keccak256.c:254]   --->   Operation 390 'zext' 'zext_ln254_3' <Predicate = true> <Delay = 0.00>
+ST_45 : Operation 391 [1/1] (0.62ns)   --->   "%shl_ln254 = shl i8 1, i8 %zext_ln254_3" [keccak256.c:254]   --->   Operation 391 'shl' 'shl_ln254' <Predicate = true> <Delay = 0.62> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 392 [1/1] (1.30ns) (out node of the LUT)   --->   "%shl_ln254_1 = shl i64 %zext_ln254_2, i64 %zext_ln254_4" [keccak256.c:254]   --->   Operation 392 'shl' 'shl_ln254_1' <Predicate = true> <Delay = 1.30> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 393 [1/1] (1.29ns)   --->   "%store_ln254 = store void @_ssdm_op_Write.bram.p0i64, i6 %keccak_context_addr_68, i64 %shl_ln254_1, i8 %shl_ln254" [keccak256.c:254]   --->   Operation 393 'store' 'store_ln254' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 46 <SV = 33> <Delay = 1.29>
+ST_46 : Operation 394 [2/2] (1.29ns)   --->   "%keccak_context_load_24 = load i6 %keccak_context_addr_54" [keccak256.c:255]   --->   Operation 394 'load' 'keccak_context_load_24' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 47 <SV = 34> <Delay = 2.59>
+ST_47 : Operation 395 [1/2] (1.29ns)   --->   "%keccak_context_load_24 = load i6 %keccak_context_addr_54" [keccak256.c:255]   --->   Operation 395 'load' 'keccak_context_load_24' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_47 : Operation 396 [1/1] (0.00ns)   --->   "%trunc_ln36 = partselect i8 @_ssdm_op_PartSelect.i8.i64.i32.i32, i64 %keccak_context_load_24, i32 56, i32 63" [keccak256.c:255]   --->   Operation 396 'partselect' 'trunc_ln36' <Predicate = true> <Delay = 0.00>
+ST_47 : Operation 397 [1/1] (0.00ns)   --->   "%or_ln255 = or i8 %trunc_ln36, i8 128" [keccak256.c:255]   --->   Operation 397 'or' 'or_ln255' <Predicate = true> <Delay = 0.00>
+ST_47 : Operation 398 [1/1] (0.00ns)   --->   "%shl_ln46 = bitconcatenate i64 @_ssdm_op_BitConcatenate.i64.i8.i56, i8 %or_ln255, i56 0" [keccak256.c:255]   --->   Operation 398 'bitconcatenate' 'shl_ln46' <Predicate = true> <Delay = 0.00>
+ST_47 : Operation 399 [1/1] (1.29ns)   --->   "%store_ln255 = store void @_ssdm_op_Write.bram.p0i64, i6 %keccak_context_addr_54, i64 %shl_ln46, i8 128" [keccak256.c:255]   --->   Operation 399 'store' 'store_ln255' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_47 : Operation 400 [1/1] (0.46ns)   --->   "%br_ln162 = br void" [keccak256.c:162]   --->   Operation 400 'br' 'br_ln162' <Predicate = true> <Delay = 0.46>
+
+State 48 <SV = 35> <Delay = 2.19>
+ST_48 : Operation 401 [1/1] (0.00ns)   --->   "%i_137 = phi i5 %add_ln162_2, void %.split, i5 0, void %split.loopexit" [keccak256.c:162]   --->   Operation 401 'phi' 'i_137' <Predicate = true> <Delay = 0.00>
+ST_48 : Operation 402 [1/1] (0.82ns)   --->   "%add_ln162_2 = add i5 %i_137, i5 1" [keccak256.c:162]   --->   Operation 402 'add' 'add_ln162_2' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 403 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 403 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_48 : Operation 404 [1/1] (0.72ns)   --->   "%icmp_ln162_2 = icmp_eq  i5 %i_137, i5 17" [keccak256.c:162]   --->   Operation 404 'icmp' 'icmp_ln162_2' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.95> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 405 [1/1] (0.00ns)   --->   "%empty_392 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 17, i64 17, i64 17"   --->   Operation 405 'speclooptripcount' 'empty_392' <Predicate = true> <Delay = 0.00>
+ST_48 : Operation 406 [1/1] (0.00ns)   --->   "%br_ln162 = br i1 %icmp_ln162_2, void %.split, void %keccak_final.exit" [keccak256.c:162]   --->   Operation 406 'br' 'br_ln162' <Predicate = true> <Delay = 0.00>
+ST_48 : Operation 407 [1/1] (0.00ns)   --->   "%i_202_cast40 = zext i5 %i_137" [keccak256.c:162]   --->   Operation 407 'zext' 'i_202_cast40' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 408 [1/1] (0.00ns)   --->   "%shl_ln163_3 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %i_137, i3 0" [keccak256.c:163]   --->   Operation 408 'bitconcatenate' 'shl_ln163_3' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 409 [1/1] (0.00ns)   --->   "%zext_ln163_6 = zext i8 %shl_ln163_3" [keccak256.c:163]   --->   Operation 409 'zext' 'zext_ln163_6' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 410 [1/1] (0.90ns)   --->   "%add_ln163_2 = add i9 %zext_ln163_6, i9 200" [keccak256.c:163]   --->   Operation 410 'add' 'add_ln163_2' <Predicate = (!icmp_ln162_2)> <Delay = 0.90> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.90> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 411 [1/1] (0.00ns)   --->   "%lshr_ln163_3 = partselect i6 @_ssdm_op_PartSelect.i6.i9.i32.i32, i9 %add_ln163_2, i32 3, i32 8" [keccak256.c:163]   --->   Operation 411 'partselect' 'lshr_ln163_3' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 412 [1/1] (0.00ns)   --->   "%zext_ln163_2 = zext i6 %lshr_ln163_3" [keccak256.c:163]   --->   Operation 412 'zext' 'zext_ln163_2' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 413 [1/1] (0.00ns)   --->   "%keccak_context_addr_70 = getelementptr i64 %keccak_context, i64 0, i64 %zext_ln163_2" [keccak256.c:163]   --->   Operation 413 'getelementptr' 'keccak_context_addr_70' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 414 [2/2] (1.29ns)   --->   "%keccak_context_load_29 = load i6 %keccak_context_addr_70" [keccak256.c:163]   --->   Operation 414 'load' 'keccak_context_load_29' <Predicate = (!icmp_ln162_2)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_48 : Operation 415 [1/1] (0.00ns)   --->   "%keccak_context_addr_71 = getelementptr i64 %keccak_context, i64 0, i64 %i_202_cast40" [keccak256.c:163]   --->   Operation 415 'getelementptr' 'keccak_context_addr_71' <Predicate = (!icmp_ln162_2)> <Delay = 0.00>
+ST_48 : Operation 416 [2/2] (1.29ns)   --->   "%keccak_context_load_30 = load i6 %keccak_context_addr_71" [keccak256.c:163]   --->   Operation 416 'load' 'keccak_context_load_30' <Predicate = (!icmp_ln162_2)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 49 <SV = 36> <Delay = 2.92>
+ST_49 : Operation 417 [1/1] (0.00ns)   --->   "%specloopname_ln162 = specloopname void @_ssdm_op_SpecLoopName, void @empty_12" [keccak256.c:162]   --->   Operation 417 'specloopname' 'specloopname_ln162' <Predicate = true> <Delay = 0.00>
+ST_49 : Operation 418 [1/2] (1.29ns)   --->   "%keccak_context_load_29 = load i6 %keccak_context_addr_70" [keccak256.c:163]   --->   Operation 418 'load' 'keccak_context_load_29' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_49 : Operation 419 [1/2] (1.29ns)   --->   "%keccak_context_load_30 = load i6 %keccak_context_addr_71" [keccak256.c:163]   --->   Operation 419 'load' 'keccak_context_load_30' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_49 : Operation 420 [1/1] (0.32ns)   --->   "%xor_ln163_2 = xor i64 %keccak_context_load_30, i64 %keccak_context_load_29" [keccak256.c:163]   --->   Operation 420 'xor' 'xor_ln163_2' <Predicate = true> <Delay = 0.32> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.32> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_49 : Operation 421 [1/1] (1.29ns)   --->   "%store_ln163 = store void @_ssdm_op_Write.bram.i64, i6 %keccak_context_addr_71, i64 %xor_ln163_2, i8 255" [keccak256.c:163]   --->   Operation 421 'store' 'store_ln163' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_49 : Operation 422 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 422 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+State 50 <SV = 36> <Delay = 0.50>
+ST_50 : Operation 423 [2/2] (0.50ns)   --->   "%call_ln167 = call void @sha3_permutation.1, i64 %keccak_context, i7 %constants" [keccak256.c:167]   --->   Operation 423 'call' 'call_ln167' <Predicate = true> <Delay = 0.50> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 51 <SV = 37> <Delay = 0.00>
+ST_51 : Operation 424 [1/2] (0.00ns)   --->   "%call_ln167 = call void @sha3_permutation.1, i64 %keccak_context, i7 %constants" [keccak256.c:167]   --->   Operation 424 'call' 'call_ln167' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 52 <SV = 38> <Delay = 1.29>
+ST_52 : Operation 425 [2/2] (1.29ns)   --->   "%keccak_context_load_25 = load i6 %keccak_context_addr"   --->   Operation 425 'load' 'keccak_context_load_25' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_52 : Operation 426 [2/2] (1.29ns)   --->   "%keccak_context_load_26 = load i6 %keccak_context_addr_14"   --->   Operation 426 'load' 'keccak_context_load_26' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 53 <SV = 39> <Delay = 1.29>
+ST_53 : Operation 427 [1/2] (1.29ns)   --->   "%keccak_context_load_25 = load i6 %keccak_context_addr"   --->   Operation 427 'load' 'keccak_context_load_25' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_53 : Operation 428 [1/2] (1.29ns)   --->   "%keccak_context_load_26 = load i6 %keccak_context_addr_14"   --->   Operation 428 'load' 'keccak_context_load_26' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_53 : Operation 429 [2/2] (1.29ns)   --->   "%keccak_context_load_27 = load i6 %keccak_context_addr_15"   --->   Operation 429 'load' 'keccak_context_load_27' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_53 : Operation 430 [2/2] (1.29ns)   --->   "%keccak_context_load_28 = load i6 %keccak_context_addr_16"   --->   Operation 430 'load' 'keccak_context_load_28' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+
+State 54 <SV = 40> <Delay = 1.29>
+ST_54 : Operation 431 [1/2] (1.29ns)   --->   "%keccak_context_load_27 = load i6 %keccak_context_addr_15"   --->   Operation 431 'load' 'keccak_context_load_27' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_54 : Operation 432 [1/2] (1.29ns)   --->   "%keccak_context_load_28 = load i6 %keccak_context_addr_16"   --->   Operation 432 'load' 'keccak_context_load_28' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 50> <RAM>
+ST_54 : Operation 433 [1/1] (0.00ns)   --->   "%output_write_assign = bitconcatenate i256 @_ssdm_op_BitConcatenate.i256.i64.i64.i64.i64, i64 %keccak_context_load_28, i64 %keccak_context_load_27, i64 %keccak_context_load_26, i64 %keccak_context_load_25"   --->   Operation 433 'bitconcatenate' 'output_write_assign' <Predicate = true> <Delay = 0.00>
+ST_54 : Operation 434 [1/1] (0.00ns)   --->   "%ret_ln274 = ret i256 %output_write_assign" [keccak256.c:274]   --->   Operation 434 'ret' 'ret_ln274' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 1.3ns
+The critical path consists of the following:
+	'alloca' operation ('keccak_context') [9]  (0 ns)
+	'getelementptr' operation ('keccak_context_addr') [12]  (0 ns)
+	'store' operation ('store_ln0') of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [13]  (1.3 ns)
+
+ <State 2>: 1.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('keccak_context_addr_15') [16]  (0 ns)
+	'store' operation ('store_ln0') of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [17]  (1.3 ns)
+
+ <State 3>: 1.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('keccak_context_addr_17') [20]  (0 ns)
+	'store' operation ('store_ln0') of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [21]  (1.3 ns)
+
+ <State 4>: 1.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('keccak_context_addr_19') [24]  (0 ns)
+	'store' operation ('store_ln0') of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [25]  (1.3 ns)
+
+ <State 5>: 1.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('keccak_context_addr_21') [28]  (0 ns)
+	'store' operation ('store_ln0') of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [29]  (1.3 ns)
+
+ <State 6>: 1.3ns
+The critical path consists of the following:
+	wire read on port 'msglen' [7]  (0 ns)
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 7>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 8>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 9>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 10>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 11>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 12>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 13>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 14>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 15>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 16>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 17>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 18>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 19>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 20>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 21>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 22>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 23>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 24>: 1.3ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+
+ <State 25>: 2.6ns
+The critical path consists of the following:
+	'urem' operation ('urem_ln186', keccak256.c:186) [110]  (1.3 ns)
+	'store' operation ('store_ln186', keccak256.c:186) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'keccak_context' [113]  (1.3 ns)
+
+ <State 26>: 3.69ns
+The critical path consists of the following:
+	'sub' operation ('sub_ln217', keccak256.c:217) [241]  (1.12 ns)
+	'sub' operation ('sub_ln217_1', keccak256.c:217) [244]  (0 ns)
+	'add' operation ('add_ln217', keccak256.c:217) [245]  (0.833 ns)
+	multiplexor before 'phi' operation ('size_addr_1_lcssa_i', keccak256.c:217) with incoming values : ('msglen') ('add_ln217', keccak256.c:217) [248]  (0.46 ns)
+	'phi' operation ('size_addr_1_lcssa_i', keccak256.c:217) with incoming values : ('msglen') ('add_ln217', keccak256.c:217) [248]  (0 ns)
+	'icmp' operation ('icmp_ln236', keccak256.c:236) [249]  (0.95 ns)
+	blocking operation 0.326 ns on control path)
+
+ <State 27>: 2.14ns
+The critical path consists of the following:
+	'phi' operation ('loop_index28') with incoming values : ('empty_359') [139]  (0 ns)
+	'add' operation ('tmp3') [149]  (0 ns)
+	'add' operation ('empty_362', keccak256.c:217) [150]  (0.847 ns)
+	'getelementptr' operation ('state_addr_152', keccak256.c:217) [153]  (0 ns)
+	'load' operation ('state_load_184', keccak256.c:217) on array 'state' [154]  (1.3 ns)
+
+ <State 28>: 4.03ns
+The critical path consists of the following:
+	'load' operation ('state_load_184', keccak256.c:217) on array 'state' [154]  (1.3 ns)
+	'lshr' operation ('empty_364', keccak256.c:217) [159]  (0 ns)
+	'shl' operation ('empty_369', keccak256.c:217) [168]  (1.44 ns)
+	'store' operation ('store_ln217', keccak256.c:217) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'keccak_context' [172]  (1.3 ns)
+
+ <State 29>: 0.46ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i', keccak256.c:162) with incoming values : ('add_ln162_1', keccak256.c:162) [177]  (0.46 ns)
+
+ <State 30>: 2.2ns
+The critical path consists of the following:
+	'phi' operation ('i', keccak256.c:162) with incoming values : ('add_ln162_1', keccak256.c:162) [177]  (0 ns)
+	'add' operation ('add_ln163_1', keccak256.c:163) [188]  (0.902 ns)
+	'getelementptr' operation ('keccak_context_addr_66', keccak256.c:163) [191]  (0 ns)
+	'load' operation ('keccak_context_load_20', keccak256.c:163) on array 'keccak_context' [192]  (1.3 ns)
+
+ <State 31>: 2.92ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_20', keccak256.c:163) on array 'keccak_context' [192]  (1.3 ns)
+	'xor' operation ('xor_ln163_1', keccak256.c:163) [195]  (0.326 ns)
+	'store' operation ('store_ln163', keccak256.c:163) of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [196]  (1.3 ns)
+
+ <State 32>: 0.502ns
+The critical path consists of the following:
+	'call' operation ('call_ln167', keccak256.c:167) to 'sha3_permutation.1' [199]  (0.502 ns)
+
+ <State 33>: 1.12ns
+The critical path consists of the following:
+	'add' operation ('byteIndex', keccak256.c:232) [237]  (1.12 ns)
+
+ <State 34>: 2.14ns
+The critical path consists of the following:
+	'phi' operation ('i', keccak256.c:162) with incoming values : ('add_ln162', keccak256.c:162) [204]  (0 ns)
+	'add' operation ('add_ln163_3', keccak256.c:163) [216]  (0 ns)
+	'add' operation ('add_ln163', keccak256.c:163) [217]  (0.847 ns)
+	'getelementptr' operation ('state_addr', keccak256.c:163) [220]  (0 ns)
+	'load' operation ('state_load', keccak256.c:163) on array 'state' [221]  (1.3 ns)
+
+ <State 35>: 4.03ns
+The critical path consists of the following:
+	'load' operation ('state_load', keccak256.c:163) on array 'state' [221]  (1.3 ns)
+	'lshr' operation ('lshr_ln163', keccak256.c:163) [226]  (0 ns)
+	'xor' operation ('xor_ln163', keccak256.c:163) [230]  (1.44 ns)
+	'store' operation ('store_ln163', keccak256.c:163) of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [231]  (1.3 ns)
+
+ <State 36>: 0.502ns
+The critical path consists of the following:
+	'call' operation ('call_ln167', keccak256.c:167) to 'sha3_permutation.1' [234]  (0.502 ns)
+
+ <State 37>: 0ns
+The critical path consists of the following:
+
+ <State 38>: 2.42ns
+The critical path consists of the following:
+	'phi' operation ('loop_index29') with incoming values : ('empty_372') [255]  (0 ns)
+	'add' operation ('empty_376') [265]  (1.12 ns)
+	'getelementptr' operation ('state_addr_153') [268]  (0 ns)
+	'load' operation ('state_load_185') on array 'state' [269]  (1.3 ns)
+
+ <State 39>: 4.03ns
+The critical path consists of the following:
+	'load' operation ('state_load_185') on array 'state' [269]  (1.3 ns)
+	'lshr' operation ('empty_378') [273]  (0 ns)
+	'shl' operation ('empty_383') [282]  (1.44 ns)
+	'store' operation ('store_ln0') of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'keccak_context' [286]  (1.3 ns)
+
+ <State 40>: 1.3ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_19', keccak256.c:253) on array 'keccak_context' [291]  (1.3 ns)
+
+ <State 41>: 2.42ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_19', keccak256.c:253) on array 'keccak_context' [291]  (1.3 ns)
+	'sub' operation ('sub_ln253', keccak256.c:253) [295]  (1.12 ns)
+
+ <State 42>: 2.63ns
+The critical path consists of the following:
+	'phi' operation ('empty_385') with incoming values : ('empty_386') [301]  (0 ns)
+	'add' operation ('empty_390', keccak256.c:253) [310]  (0.715 ns)
+	'shl' operation ('empty_391', keccak256.c:253) [312]  (0.621 ns)
+	'store' operation ('store_ln253', keccak256.c:253) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'keccak_context' [316]  (1.3 ns)
+
+ <State 43>: 1.3ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_22', keccak256.c:254) on array 'keccak_context' [319]  (1.3 ns)
+
+ <State 44>: 3.5ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_22', keccak256.c:254) on array 'keccak_context' [319]  (1.3 ns)
+	'add' operation ('add_ln254', keccak256.c:254) [322]  (0.902 ns)
+	'getelementptr' operation ('keccak_context_addr_68', keccak256.c:254) [325]  (0 ns)
+	'load' operation ('keccak_context_load_23', keccak256.c:254) on array 'keccak_context' [326]  (1.3 ns)
+
+ <State 45>: 3.9ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_23', keccak256.c:254) on array 'keccak_context' [326]  (1.3 ns)
+	'lshr' operation ('lshr_ln254', keccak256.c:254) [329]  (0 ns)
+	'or' operation ('or_ln254', keccak256.c:254) [331]  (0 ns)
+	'shl' operation ('shl_ln254_1', keccak256.c:254) [335]  (1.31 ns)
+	'store' operation ('store_ln254', keccak256.c:254) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'keccak_context' [336]  (1.3 ns)
+
+ <State 46>: 1.3ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_24', keccak256.c:255) on array 'keccak_context' [337]  (1.3 ns)
+
+ <State 47>: 2.59ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_24', keccak256.c:255) on array 'keccak_context' [337]  (1.3 ns)
+	'or' operation ('or_ln255', keccak256.c:255) [339]  (0 ns)
+	'store' operation ('store_ln255', keccak256.c:255) of constant <constant:_ssdm_op_Write.bram.p0i64> on array 'keccak_context' [341]  (1.3 ns)
+
+ <State 48>: 2.2ns
+The critical path consists of the following:
+	'phi' operation ('i', keccak256.c:162) with incoming values : ('add_ln162_2', keccak256.c:162) [344]  (0 ns)
+	'add' operation ('add_ln163_2', keccak256.c:163) [355]  (0.902 ns)
+	'getelementptr' operation ('keccak_context_addr_70', keccak256.c:163) [358]  (0 ns)
+	'load' operation ('keccak_context_load_29', keccak256.c:163) on array 'keccak_context' [359]  (1.3 ns)
+
+ <State 49>: 2.92ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_29', keccak256.c:163) on array 'keccak_context' [359]  (1.3 ns)
+	'xor' operation ('xor_ln163_2', keccak256.c:163) [362]  (0.326 ns)
+	'store' operation ('store_ln163', keccak256.c:163) of constant <constant:_ssdm_op_Write.bram.i64> on array 'keccak_context' [363]  (1.3 ns)
+
+ <State 50>: 0.502ns
+The critical path consists of the following:
+	'call' operation ('call_ln167', keccak256.c:167) to 'sha3_permutation.1' [366]  (0.502 ns)
+
+ <State 51>: 0ns
+The critical path consists of the following:
+
+ <State 52>: 1.3ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_25') on array 'keccak_context' [367]  (1.3 ns)
+
+ <State 53>: 1.3ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_25') on array 'keccak_context' [367]  (1.3 ns)
+
+ <State 54>: 1.3ns
+The critical path consists of the following:
+	'load' operation ('keccak_context_load_27') on array 'keccak_context' [369]  (1.3 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

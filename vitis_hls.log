@@ -1,0 +1,77 @@
+INFO: [HLS 200-10] Running 'D:/Xillin/Vitis_HLS/2020.2/bin/unwrapped/win64.o/vitis_hls.exe'
+INFO: [HLS 200-10] For user 'world' on host 'desktop-ssscv16' (Windows NT_amd64 version 6.2) on Mon Aug 23 22:59:13 +0700 2021
+INFO: [HLS 200-10] In directory 'D:/projects/evmone_fpga'
+Sourcing Tcl script 'D:/projects/evmone_fpga/refactor-fpga/refactor/csim.tcl'
+INFO: [HLS 200-1510] Running: open_project refactor-fpga 
+INFO: [HLS 200-10] Opening project 'D:/projects/evmone_fpga/refactor-fpga'.
+INFO: [HLS 200-1510] Running: set_top execute_contract_fpga 
+INFO: [HLS 200-1510] Running: add_files keccak256.h 
+INFO: [HLS 200-10] Adding design file 'keccak256.h' to the project
+INFO: [HLS 200-1510] Running: add_files keccak256.c 
+INFO: [HLS 200-10] Adding design file 'keccak256.c' to the project
+INFO: [HLS 200-1510] Running: add_files intx/intx.hpp 
+INFO: [HLS 200-10] Adding design file 'intx/intx.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files intx/int128.hpp 
+INFO: [HLS 200-10] Adding design file 'intx/int128.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files instructions.hpp 
+INFO: [HLS 200-10] Adding design file 'instructions.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files evmc/instructions.h 
+INFO: [HLS 200-10] Adding design file 'evmc/instructions.h' to the project
+INFO: [HLS 200-1510] Running: add_files instructions.cpp 
+INFO: [HLS 200-10] Adding design file 'instructions.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files instruction_traits.hpp 
+INFO: [HLS 200-10] Adding design file 'instruction_traits.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files evmc/helpers.h 
+INFO: [HLS 200-10] Adding design file 'evmc/helpers.h' to the project
+INFO: [HLS 200-1510] Running: add_files executor_fpga.hpp 
+INFO: [HLS 200-10] Adding design file 'executor_fpga.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files executor_fpga.cpp 
+INFO: [HLS 200-10] Adding design file 'executor_fpga.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files execution_state.hpp 
+INFO: [HLS 200-10] Adding design file 'execution_state.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files evmc/evmc.hpp 
+INFO: [HLS 200-10] Adding design file 'evmc/evmc.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files evmc/evmc.h 
+INFO: [HLS 200-10] Adding design file 'evmc/evmc.h' to the project
+INFO: [HLS 200-1510] Running: add_files basic_string.hpp 
+INFO: [HLS 200-10] Adding design file 'basic_string.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files analysis.hpp 
+INFO: [HLS 200-10] Adding design file 'analysis.hpp' to the project
+INFO: [HLS 200-1510] Running: add_files analysis.cpp 
+INFO: [HLS 200-10] Adding design file 'analysis.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tests/utils.h -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file 'tests/utils.h' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tests/utils.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file 'tests/utils.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tests/test-erc20.cpp -cflags -Wno-unknown-pragmas -csimflags -Wno-unknown-pragmas 
+INFO: [HLS 200-10] Adding test bench file 'tests/test-erc20.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution refactor -flow_target vivado 
+INFO: [HLS 200-10] Opening solution 'D:/projects/evmone_fpga/refactor-fpga/refactor'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu11p-flga2577-1-e'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2020.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_export -format=ip_catalog
+INFO: [HLS 200-1464] Running solution command: config_export -output=D:/projects/evmone_fpga/execute_contract_fpga.zip
+INFO: [HLS 200-1464] Running solution command: config_export -rtl=verilog
+INFO: [HLS 200-1510] Running: set_part xcvu11p-flga2577-1-e 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -output D:/projects/evmone_fpga/execute_contract_fpga.zip -rtl verilog 
+INFO: [HLS 200-1510] Running: set_directive_top -name execute_contract_fpga execute_contract_fpga 
+INFO: [HLS 200-1510] Running: csim_design -quiet 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+make: 'csim.exe' is up to date.
+Testing on test case 0-th
+Testing on test case 1-th
+Testing on test case 2-th
+Testing on test case 3-th
+Testing on test case 4-th
+Testing on test case 5-th
+Testing on test case 6-th
+Testing on test case 7-th
+Test keccak success
+The maximum depth reached by any of the 2 hls::stream() instances in the design is 0
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.44 seconds; current allocated memory: 97.775 MB.

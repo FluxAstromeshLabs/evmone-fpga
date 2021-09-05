@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="keccak256.h" path="D:\projects\evmone_fpga\keccak256.h"/>
+    <originFiles name="keccak256.c" path="D:\projects\evmone_fpga\keccak256.c"/>
+    <originFiles name="intx.hpp" path="D:\projects\evmone_fpga\intx\intx.hpp"/>
+    <originFiles name="int128.hpp" path="D:\projects\evmone_fpga\intx\int128.hpp"/>
+    <originFiles name="instructions.hpp" path="D:\projects\evmone_fpga\instructions.hpp"/>
+    <originFiles name="instructions.h" path="D:\projects\evmone_fpga\evmc\instructions.h"/>
+    <originFiles name="instructions.cpp" path="D:\projects\evmone_fpga\instructions.cpp"/>
+    <originFiles name="instruction_traits.hpp" path="D:\projects\evmone_fpga\instruction_traits.hpp"/>
+    <originFiles name="helpers.h" path="D:\projects\evmone_fpga\evmc\helpers.h"/>
+    <originFiles name="executor_fpga.hpp" path="D:\projects\evmone_fpga\executor_fpga.hpp"/>
+    <originFiles name="executor_fpga.cpp" path="D:\projects\evmone_fpga\executor_fpga.cpp"/>
+    <originFiles name="execution_state.hpp" path="D:\projects\evmone_fpga\execution_state.hpp"/>
+    <originFiles name="evmc.hpp" path="D:\projects\evmone_fpga\evmc\evmc.hpp"/>
+    <originFiles name="evmc.h" path="D:\projects\evmone_fpga\evmc\evmc.h"/>
+    <originFiles name="basic_string.hpp" path="D:\projects\evmone_fpga\basic_string.hpp"/>
+    <originFiles name="analysis.hpp" path="D:\projects\evmone_fpga\analysis.hpp"/>
+    <originFiles name="analysis.cpp" path="D:\projects\evmone_fpga\analysis.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="utils.h" path="D:\projects\evmone_fpga\tests\utils.h"/>
+    <originFiles name="utils.cpp" path="D:\projects\evmone_fpga\tests\utils.cpp"/>
+    <originFiles name="test-erc20.cpp" path="D:\projects\evmone_fpga\tests\test-erc20.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

@@ -1,0 +1,207 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'addmod'" level="0">
+<item name = "Date">Mon Aug 23 09:44:16 2021
+</item>
+<item name = "Version">2020.2 (Build 3064766 on Wed Nov 18 09:12:45 MST 2020)</item>
+<item name = "Project">refactor-fpga</item>
+<item name = "Solution">refactor (Vivado IP Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu11p-flga2577-1-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00 ns, 6.832 ns, 2.70 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_udivrem_512u_s_fu_332">udivrem_512u_s, ?, ?, ?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">3, 3, 1, -, -, 4, no</column>
+<column name="- Loop 2">4, 4, 1, -, -, 4, no</column>
+<column name="- Loop 3">7, 7, 1, -, -, 8, no</column>
+<column name="- Loop 4">4, 4, 1, -, -, 4, no</column>
+<column name="- Loop 5">7, 7, 1, -, -, 8, no</column>
+<column name="- Loop 6">8, 8, 2, -, -, 4, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 1300, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">3, 173, 8703, 18744, -</column>
+<column name="Memory">0, -, 384, 24, -</column>
+<column name="Multiplexer">-, -, -, 354, -</column>
+<column name="Register">-, -, 622, -, -</column>
+<specialColumn name="Available SLR">1344, 3072, 864000, 432000, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">~0, 5, 1, 4, 0</specialColumn>
+<specialColumn name="Available">4032, 9216, 2592000, 1296000, 960</specialColumn>
+<specialColumn name="Utilization (%)">~0, 1, ~0, 1, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
+<column name="mux_42_64_1_1_U284">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="mux_42_64_1_1_U285">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="mux_42_64_1_1_U286">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="mux_42_64_1_1_U287">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="mux_42_64_1_1_U288">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="mux_42_64_1_1_U289">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="mux_42_64_1_1_U290">mux_42_64_1_1, 0, 0, 0, 20, 0</column>
+<column name="grp_udivrem_512u_s_fu_332">udivrem_512u_s, 3, 173, 8703, 18604, 0</column>
+</table>
+</item>
+<item name = "DSP"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="ref_tmp_1_i_i_U">mulmod_ref_tmp_1_i_i, 0, 128, 8, 0, 8, 64, 1, 512</column>
+<column name="y_word_num_bits_assign_U">udivrem_512u_s_r_word_num_bits, 0, 128, 8, 0, 8, 64, 1, 512</column>
+<column name="n_word_num_bits_U">udivrem_512u_s_r_word_num_bits, 0, 128, 8, 0, 8, 64, 1, 512</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln175_fu_497_p2">+, 0, 0, 71, 64, 64</column>
+<column name="add_ln177_fu_513_p2">+, 0, 0, 71, 64, 64</column>
+<column name="add_ln29_27_fu_551_p2">+, 0, 0, 10, 3, 1</column>
+<column name="add_ln29_28_fu_621_p2">+, 0, 0, 10, 3, 1</column>
+<column name="add_ln29_fu_341_p2">+, 0, 0, 9, 2, 1</column>
+<column name="add_ln39_fu_693_p2">+, 0, 0, 12, 5, 5</column>
+<column name="add_ln50_fu_673_p2">+, 0, 0, 26, 19, 19</column>
+<column name="i_159_fu_568_p2">+, 0, 0, 10, 3, 1</column>
+<column name="i_160_fu_641_p2">+, 0, 0, 10, 3, 1</column>
+<column name="i_fu_461_p2">+, 0, 0, 10, 3, 1</column>
+<column name="icmp_ln173_fu_467_p2">icmp, 0, 0, 9, 3, 4</column>
+<column name="icmp_ln178_fu_539_p2">icmp, 0, 0, 29, 64, 64</column>
+<column name="icmp_ln29_29_fu_562_p2">icmp, 0, 0, 8, 3, 2</column>
+<column name="icmp_ln29_30_fu_632_p2">icmp, 0, 0, 8, 3, 2</column>
+<column name="icmp_ln29_fu_415_p2">icmp, 0, 0, 8, 2, 2</column>
+<column name="icmp_ln38_1_fu_651_p2">icmp, 0, 0, 9, 3, 4</column>
+<column name="icmp_ln38_fu_579_p2">icmp, 0, 0, 9, 3, 4</column>
+<column name="k1_fu_503_p2">icmp, 0, 0, 29, 64, 64</column>
+<column name="lshr_ln39_fu_709_p2">lshr, 0, 0, 950, 256, 256</column>
+<column name="s_carry_fu_545_p2">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">65, 12, 1, 12</column>
+<column name="ap_return">9, 2, 64, 128</column>
+<column name="i_137_reg_265">9, 2, 3, 6</column>
+<column name="i_138_reg_299">9, 2, 3, 6</column>
+<column name="i_139_reg_321">9, 2, 3, 6</column>
+<column name="idx14_reg_288">9, 2, 3, 6</column>
+<column name="idx16_reg_310">9, 2, 3, 6</column>
+<column name="k_reg_276">9, 2, 1, 2</column>
+<column name="n_word_num_bits_address0">26, 5, 3, 15</column>
+<column name="n_word_num_bits_ce0">14, 3, 1, 3</column>
+<column name="n_word_num_bits_ce1">9, 2, 1, 2</column>
+<column name="n_word_num_bits_d0">20, 4, 64, 256</column>
+<column name="phi_ln29_reg_254">9, 2, 2, 4</column>
+<column name="ref_tmp_1_i_i_address0">14, 3, 3, 9</column>
+<column name="ref_tmp_1_i_i_ce0">14, 3, 1, 3</column>
+<column name="ref_tmp_1_i_i_ce1">9, 2, 1, 2</column>
+<column name="ref_tmp_1_i_i_we0">9, 2, 1, 2</column>
+<column name="ref_tmp_1_i_i_we1">9, 2, 1, 2</column>
+<column name="s_value_word_num_bits_0_0_fu_110">9, 2, 64, 128</column>
+<column name="s_value_word_num_bits_1_0_fu_114">9, 2, 64, 128</column>
+<column name="s_value_word_num_bits_2_0_fu_118">9, 2, 64, 128</column>
+<column name="s_value_word_num_bits_3_0_fu_122">9, 2, 64, 128</column>
+<column name="y_word_num_bits_assign_address0">20, 4, 3, 12</column>
+<column name="y_word_num_bits_assign_ce0">14, 3, 1, 3</column>
+<column name="y_word_num_bits_assign_ce1">9, 2, 1, 2</column>
+<column name="y_word_num_bits_assign_d0">14, 3, 64, 192</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="add_ln39_reg_889">5, 0, 5, 0</column>
+<column name="ap_CS_fsm">11, 0, 11, 0</column>
+<column name="ap_return_preg">64, 0, 64, 0</column>
+<column name="grp_udivrem_512u_s_fu_332_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_137_reg_265">3, 0, 3, 0</column>
+<column name="i_138_reg_299">3, 0, 3, 0</column>
+<column name="i_139_reg_321">3, 0, 3, 0</column>
+<column name="i_160_reg_871">3, 0, 3, 0</column>
+<column name="idx14_reg_288">3, 0, 3, 0</column>
+<column name="idx16_reg_310">3, 0, 3, 0</column>
+<column name="k_reg_276">1, 0, 1, 0</column>
+<column name="phi_ln29_reg_254">2, 0, 2, 0</column>
+<column name="s_value_word_num_bits_0_0_fu_110">64, 0, 64, 0</column>
+<column name="s_value_word_num_bits_1_0_fu_114">64, 0, 64, 0</column>
+<column name="s_value_word_num_bits_2_0_fu_118">64, 0, 64, 0</column>
+<column name="s_value_word_num_bits_3_0_fu_122">64, 0, 64, 0</column>
+<column name="s_word_num_bits_0_0_fu_82">64, 0, 64, 0</column>
+<column name="s_word_num_bits_1_0_fu_86">64, 0, 64, 0</column>
+<column name="s_word_num_bits_2_0_fu_90">64, 0, 64, 0</column>
+<column name="s_word_num_bits_3_0_fu_94">64, 0, 64, 0</column>
+<column name="trunc_ln50_63_reg_866">5, 0, 5, 0</column>
+<column name="zext_ln38_1_reg_876">3, 0, 64, 61</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, addmod, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, addmod, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, addmod, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, addmod, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, addmod, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, addmod, return value</column>
+<column name="ap_return">out, 64, ap_ctrl_hs, addmod, return value</column>
+<column name="state_address0">out, 14, ap_memory, state, array</column>
+<column name="state_ce0">out, 1, ap_memory, state, array</column>
+<column name="state_q0">in, 256, ap_memory, state, array</column>
+<column name="p_read">in, 64, ap_none, p_read, scalar</column>
+<column name="p_read1">in, 64, ap_none, p_read1, scalar</column>
+<column name="p_read2">in, 64, ap_none, p_read2, scalar</column>
+<column name="p_read3">in, 64, ap_none, p_read3, scalar</column>
+<column name="p_read4">in, 64, ap_none, p_read4, scalar</column>
+<column name="p_read5">in, 64, ap_none, p_read5, scalar</column>
+<column name="p_read6">in, 64, ap_none, p_read6, scalar</column>
+<column name="p_read7">in, 64, ap_none, p_read7, scalar</column>
+<column name="mod_r">in, 19, ap_none, mod_r, scalar</column>
+</table>
+</item>
+</section>
+</profile>

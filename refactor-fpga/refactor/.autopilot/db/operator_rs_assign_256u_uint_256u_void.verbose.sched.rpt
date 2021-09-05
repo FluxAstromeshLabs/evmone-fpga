@@ -1,0 +1,311 @@
+
+
+================================================================
+== Vitis HLS Report for 'operator_rs_assign_256u_uint_256u_void'
+================================================================
+* Date:           Mon Aug 23 09:42:06 2021
+
+* Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:45 MST 2020)
+* Project:        refactor-fpga
+* Solution:       refactor (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.505 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|     none|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |        4|        4|         1|          -|          -|     4|        no|
+        |- Loop 2  |        3|        3|         1|          -|          -|     4|        no|
+        |- Loop 3  |        ?|        ?|         2|          1|          1|     ?|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 4 5 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 2 6 3 
+3 --> 3 6 4 
+4 --> 5 
+5 --> 6 4 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.46>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%p_read37 = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %p_read3"   --->   Operation 7 'read' 'p_read37' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_read26 = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %p_read2"   --->   Operation 8 'read' 'p_read26' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%p_read15 = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %p_read1"   --->   Operation 9 'read' 'p_read15' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%p_read_11 = read i64 @_ssdm_op_Read.ap_auto.i64, i64 %p_read"   --->   Operation 10 'read' 'p_read_11' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%x_read = read i19 @_ssdm_op_Read.ap_auto.i19, i19 %x"   --->   Operation 11 'read' 'x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%s = trunc i64 %p_read_11"   --->   Operation 12 'trunc' 's' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i256 %state, void @empty_17, i32 0, i32 0, void @empty_18, i32 4294967295, i32 0, void @empty_18, void @empty_18, void @empty_18, i32 0, i32 0, i32 0, i32 0, void @empty_18, void @empty_18"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specbramwithbyteenable_ln0 = specbramwithbyteenable void @_ssdm_op_SpecBRAMWithByteEnable, i256 %state"   --->   Operation 14 'specbramwithbyteenable' 'specbramwithbyteenable_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.46ns)   --->   "%br_ln211 = br void %_ZN4intx4uintILj256EEC2Ev.exit.i.i.i" [./intx/int128.hpp:211]   --->   Operation 15 'br' 'br_ln211' <Predicate = true> <Delay = 0.46>
+
+State 2 <SV = 1> <Delay = 3.19>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%i = phi i3 %i_54, void %.split2, i3 0, void %memset.loop2"   --->   Operation 16 'phi' 'i' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%k = phi i1 %k_13, void %.split2, i1 0, void %memset.loop2"   --->   Operation 17 'phi' 'k' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.71ns)   --->   "%i_54 = add i3 %i, i3 1" [./intx/int128.hpp:211]   --->   Operation 18 'add' 'i_54' <Predicate = true> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.56ns)   --->   "%icmp_ln211 = icmp_eq  i3 %i, i3 4" [./intx/int128.hpp:211]   --->   Operation 19 'icmp' 'icmp_ln211' <Predicate = true> <Delay = 0.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4"   --->   Operation 20 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%br_ln211 = br i1 %icmp_ln211, void %.split2, void %_ZN4intxltILj256EEEbRKNS_4uintIXT_EEES4_.exit.i" [./intx/int128.hpp:211]   --->   Operation 21 'br' 'br_ln211' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%trunc_ln50 = trunc i3 %i" [./intx/intx.hpp:50]   --->   Operation 22 'trunc' 'trunc_ln50' <Predicate = (!icmp_ln211)> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.54ns)   --->   "%tmp = mux i64 @_ssdm_op_Mux.ap_auto.4i64.i2, i64 %p_read_11, i64 %p_read15, i64 %p_read26, i64 %p_read37, i2 %trunc_ln50" [./intx/int128.hpp:213]   --->   Operation 23 'mux' 'tmp' <Predicate = (!icmp_ln211)> <Delay = 0.54> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.54ns)   --->   "%tmp_s = mux i64 @_ssdm_op_Mux.ap_auto.4i64.i2, i64 256, i64 0, i64 0, i64 0, i2 %trunc_ln50" [./intx/int128.hpp:213]   --->   Operation 24 'mux' 'tmp_s' <Predicate = (!icmp_ln211)> <Delay = 0.54> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 25 [1/1] (1.36ns)   --->   "%sub_ln213 = sub i64 %tmp, i64 %tmp_s" [./intx/int128.hpp:213]   --->   Operation 25 'sub' 'sub_ln213' <Predicate = (!icmp_ln211)> <Delay = 1.36> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (1.14ns)   --->   "%k1 = icmp_ult  i64 %tmp, i64 %tmp_s" [./intx/int128.hpp:214]   --->   Operation 26 'icmp' 'k1' <Predicate = (!icmp_ln211)> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%zext_ln215 = zext i1 %k" [./intx/int128.hpp:215]   --->   Operation 27 'zext' 'zext_ln215' <Predicate = (!icmp_ln211)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (1.14ns)   --->   "%k2 = icmp_ult  i64 %sub_ln213, i64 %zext_ln215" [./intx/int128.hpp:215]   --->   Operation 28 'icmp' 'k2' <Predicate = (!icmp_ln211)> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (0.14ns)   --->   "%k_13 = or i1 %k1, i1 %k2" [./intx/int128.hpp:217]   --->   Operation 29 'or' 'k_13' <Predicate = (!icmp_ln211)> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%br_ln0 = br void %_ZN4intx4uintILj256EEC2Ev.exit.i.i.i"   --->   Operation 30 'br' 'br_ln0' <Predicate = (!icmp_ln211)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.50ns)   --->   "%br_ln294 = br i1 %k, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit, void %branch0.preheader" [./intx/intx.hpp:294]   --->   Operation 31 'br' 'br_ln294' <Predicate = (icmp_ln211)> <Delay = 0.50>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%r_word_num_bits_0_0 = alloca i32 1"   --->   Operation 32 'alloca' 'r_word_num_bits_0_0' <Predicate = (icmp_ln211 & k)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%r_word_num_bits_1_0 = alloca i32 1"   --->   Operation 33 'alloca' 'r_word_num_bits_1_0' <Predicate = (icmp_ln211 & k)> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%r_word_num_bits_2_0 = alloca i32 1"   --->   Operation 34 'alloca' 'r_word_num_bits_2_0' <Predicate = (icmp_ln211 & k)> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%r_word_num_bits_3_0 = alloca i32 1"   --->   Operation 35 'alloca' 'r_word_num_bits_3_0' <Predicate = (icmp_ln211 & k)> <Delay = 0.00>
+ST_2 : Operation 36 [1/1] (0.46ns)   --->   "%br_ln0 = br void %branch0"   --->   Operation 36 'br' 'br_ln0' <Predicate = (icmp_ln211 & k)> <Delay = 0.46>
+
+State 3 <SV = 2> <Delay = 1.74>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%phi_ln29 = phi i2 %add_ln29, void %branch0, i2 0, void %branch0.preheader" [./intx/intx.hpp:29]   --->   Operation 37 'phi' 'phi_ln29' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.62ns)   --->   "%add_ln29 = add i2 %phi_ln29, i2 1" [./intx/intx.hpp:29]   --->   Operation 38 'add' 'add_ln29' <Predicate = true> <Delay = 0.62> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%r_word_num_bits_0_0_load = load i64 %r_word_num_bits_0_0"   --->   Operation 39 'load' 'r_word_num_bits_0_0_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%r_word_num_bits_1_0_load = load i64 %r_word_num_bits_1_0"   --->   Operation 40 'load' 'r_word_num_bits_1_0_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%r_word_num_bits_2_0_load = load i64 %r_word_num_bits_2_0"   --->   Operation 41 'load' 'r_word_num_bits_2_0_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%r_word_num_bits_3_0_load = load i64 %r_word_num_bits_3_0"   --->   Operation 42 'load' 'r_word_num_bits_3_0_load' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.54ns)   --->   "%r_word_num_bits_0_1 = mux i64 @_ssdm_op_Mux.ap_auto.4i64.i2, i64 0, i64 %r_word_num_bits_0_0_load, i64 %r_word_num_bits_0_0_load, i64 %r_word_num_bits_0_0_load, i2 %phi_ln29" [./intx/intx.hpp:29]   --->   Operation 43 'mux' 'r_word_num_bits_0_1' <Predicate = true> <Delay = 0.54> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.54ns)   --->   "%r_word_num_bits_1_1 = mux i64 @_ssdm_op_Mux.ap_auto.4i64.i2, i64 %r_word_num_bits_1_0_load, i64 0, i64 %r_word_num_bits_1_0_load, i64 %r_word_num_bits_1_0_load, i2 %phi_ln29" [./intx/intx.hpp:29]   --->   Operation 44 'mux' 'r_word_num_bits_1_1' <Predicate = true> <Delay = 0.54> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 45 [1/1] (0.54ns)   --->   "%r_word_num_bits_2_1 = mux i64 @_ssdm_op_Mux.ap_auto.4i64.i2, i64 %r_word_num_bits_2_0_load, i64 %r_word_num_bits_2_0_load, i64 0, i64 %r_word_num_bits_2_0_load, i2 %phi_ln29" [./intx/intx.hpp:29]   --->   Operation 45 'mux' 'r_word_num_bits_2_1' <Predicate = true> <Delay = 0.54> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 46 [1/1] (0.54ns)   --->   "%r_word_num_bits_3_1 = mux i64 @_ssdm_op_Mux.ap_auto.4i64.i2, i64 %r_word_num_bits_3_0_load, i64 %r_word_num_bits_3_0_load, i64 %r_word_num_bits_3_0_load, i64 0, i2 %phi_ln29" [./intx/intx.hpp:29]   --->   Operation 46 'mux' 'r_word_num_bits_3_1' <Predicate = true> <Delay = 0.54> <CoreInst = "Multiplexer">   --->   Core 76 'Multiplexer' <Latency = 0> <II = 1> <Delay = 0.54> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 47 [1/1] (0.39ns)   --->   "%icmp_ln29 = icmp_eq  i2 %phi_ln29, i2 3" [./intx/intx.hpp:29]   --->   Operation 47 'icmp' 'icmp_ln29' <Predicate = true> <Delay = 0.39> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%empty_151 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 4, i64 4, i64 4"   --->   Operation 48 'speclooptripcount' 'empty_151' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_3_1, i64 %r_word_num_bits_3_0" [./intx/intx.hpp:29]   --->   Operation 49 'store' 'store_ln29' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_2_1, i64 %r_word_num_bits_2_0" [./intx/intx.hpp:29]   --->   Operation 50 'store' 'store_ln29' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_1_1, i64 %r_word_num_bits_1_0" [./intx/intx.hpp:29]   --->   Operation 51 'store' 'store_ln29' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_0_1, i64 %r_word_num_bits_0_0" [./intx/intx.hpp:29]   --->   Operation 52 'store' 'store_ln29' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%br_ln29 = br i1 %icmp_ln29, void %branch0, void %_ZN4intx4uintILj256EEC2Ev.exit.i.i" [./intx/intx.hpp:29]   --->   Operation 53 'br' 'br_ln29' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%zext_ln267 = zext i6 %s" [./intx/intx.hpp:267]   --->   Operation 54 'zext' 'zext_ln267' <Predicate = (icmp_ln29)> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%trunc_ln = partselect i2 @_ssdm_op_PartSelect.i2.i64.i32.i32, i64 %p_read_11, i32 6, i32 7" [./intx/intx.hpp:268]   --->   Operation 55 'partselect' 'trunc_ln' <Predicate = (icmp_ln29)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%trunc_ln268_2 = partselect i58 @_ssdm_op_PartSelect.i58.i64.i32.i32, i64 %p_read_11, i32 6, i32 63" [./intx/intx.hpp:268]   --->   Operation 56 'partselect' 'trunc_ln268_2' <Predicate = (icmp_ln29)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%zext_ln268 = zext i58 %trunc_ln268_2" [./intx/intx.hpp:268]   --->   Operation 57 'zext' 'zext_ln268' <Predicate = (icmp_ln29)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (1.33ns)   --->   "%sub_i_i = sub i59 4, i59 %zext_ln268" [./intx/intx.hpp:268]   --->   Operation 58 'sub' 'sub_i_i' <Predicate = (icmp_ln29)> <Delay = 1.33> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%sub_i_i_cast = sext i59 %sub_i_i" [./intx/intx.hpp:268]   --->   Operation 59 'sext' 'sub_i_i_cast' <Predicate = (icmp_ln29)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.14ns)   --->   "%empty_152 = xor i6 %s, i6 63"   --->   Operation 60 'xor' 'empty_152' <Predicate = (icmp_ln29)> <Delay = 0.14> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%zext_ln272 = zext i6 %empty_152" [./intx/intx.hpp:272]   --->   Operation 61 'zext' 'zext_ln272' <Predicate = (icmp_ln29)> <Delay = 0.00>
+ST_3 : Operation 62 [1/1] (1.13ns)   --->   "%icmp_ln272 = icmp_eq  i58 %trunc_ln268_2, i58 4" [./intx/intx.hpp:272]   --->   Operation 62 'icmp' 'icmp_ln272' <Predicate = (icmp_ln29)> <Delay = 1.13> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 63 [1/1] (0.50ns)   --->   "%br_ln272 = br i1 %icmp_ln272, void %.lr.ph.i.i.preheader, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit" [./intx/intx.hpp:272]   --->   Operation 63 'br' 'br_ln272' <Predicate = (icmp_ln29)> <Delay = 0.50>
+ST_3 : Operation 64 [1/1] (0.00ns)   --->   "%r_word_num_bits_0_2 = alloca i32 1"   --->   Operation 64 'alloca' 'r_word_num_bits_0_2' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.00>
+ST_3 : Operation 65 [1/1] (0.00ns)   --->   "%r_word_num_bits_1_2 = alloca i32 1"   --->   Operation 65 'alloca' 'r_word_num_bits_1_2' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.00>
+ST_3 : Operation 66 [1/1] (0.00ns)   --->   "%r_word_num_bits_2_2 = alloca i32 1"   --->   Operation 66 'alloca' 'r_word_num_bits_2_2' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.00>
+ST_3 : Operation 67 [1/1] (0.00ns)   --->   "%r_word_num_bits_3_2 = alloca i32 1"   --->   Operation 67 'alloca' 'r_word_num_bits_3_2' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.00>
+ST_3 : Operation 68 [1/1] (0.00ns)   --->   "%trunc_ln50_17 = trunc i19 %x_read" [./intx/intx.hpp:50]   --->   Operation 68 'trunc' 'trunc_ln50_17' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.00>
+ST_3 : Operation 69 [1/1] (0.46ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_3_1, i64 %r_word_num_bits_3_2" [./intx/intx.hpp:29]   --->   Operation 69 'store' 'store_ln29' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.46>
+ST_3 : Operation 70 [1/1] (0.46ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_2_1, i64 %r_word_num_bits_2_2" [./intx/intx.hpp:29]   --->   Operation 70 'store' 'store_ln29' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.46>
+ST_3 : Operation 71 [1/1] (0.46ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_1_1, i64 %r_word_num_bits_1_2" [./intx/intx.hpp:29]   --->   Operation 71 'store' 'store_ln29' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.46>
+ST_3 : Operation 72 [1/1] (0.46ns)   --->   "%store_ln29 = store i64 %r_word_num_bits_0_1, i64 %r_word_num_bits_0_2" [./intx/intx.hpp:29]   --->   Operation 72 'store' 'store_ln29' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.46>
+ST_3 : Operation 73 [1/1] (0.46ns)   --->   "%br_ln0 = br void %.lr.ph.i.i"   --->   Operation 73 'br' 'br_ln0' <Predicate = (icmp_ln29 & !icmp_ln272)> <Delay = 0.46>
+
+State 4 <SV = 3> <Delay = 3.54>
+ST_4 : Operation 74 [1/1] (0.00ns)   --->   "%i_55 = phi i64 %i_56, void %.split34, i64 0, void %.lr.ph.i.i.preheader"   --->   Operation 74 'phi' 'i_55' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 75 [1/1] (1.36ns)   --->   "%i_56 = add i64 %i_55, i64 1" [./intx/intx.hpp:272]   --->   Operation 75 'add' 'i_56' <Predicate = true> <Delay = 1.36> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 76 [1/1] (1.14ns)   --->   "%icmp_ln272_1 = icmp_eq  i64 %i_55, i64 %sub_i_i_cast" [./intx/intx.hpp:272]   --->   Operation 76 'icmp' 'icmp_ln272_1' <Predicate = true> <Delay = 1.14> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 77 [1/1] (0.00ns)   --->   "%br_ln272 = br i1 %icmp_ln272_1, void %.split, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit.loopexit" [./intx/intx.hpp:272]   --->   Operation 77 'br' 'br_ln272' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 78 [1/1] (0.00ns)   --->   "%empty_153 = trunc i64 %i_55" [./intx/intx.hpp:272]   --->   Operation 78 'trunc' 'empty_153' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_4 : Operation 79 [1/1] (1.12ns)   --->   "%sub_ln274 = sub i16 3, i16 %empty_153" [./intx/intx.hpp:274]   --->   Operation 79 'sub' 'sub_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 80 [1/1] (0.00ns)   --->   "%trunc_ln0 = trunc i16 %sub_ln274" [./intx/intx.hpp:0]   --->   Operation 80 'trunc' 'trunc_ln0' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_4 : Operation 81 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i19 @_ssdm_op_BitConcatenate.i19.i16.i3, i16 %sub_ln274, i3 0" [./intx/intx.hpp:50]   --->   Operation 81 'bitconcatenate' 'shl_ln' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_4 : Operation 82 [1/1] (1.12ns)   --->   "%add_ln50 = add i19 %shl_ln, i19 %x_read" [./intx/intx.hpp:50]   --->   Operation 82 'add' 'add_ln50' <Predicate = (!icmp_ln272_1)> <Delay = 1.12> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 83 [1/1] (0.00ns)   --->   "%lshr_ln274_4 = partselect i14 @_ssdm_op_PartSelect.i14.i19.i32.i32, i19 %add_ln50, i32 5, i32 18" [./intx/intx.hpp:274]   --->   Operation 83 'partselect' 'lshr_ln274_4' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_4 : Operation 84 [1/1] (0.00ns)   --->   "%zext_ln274 = zext i14 %lshr_ln274_4" [./intx/intx.hpp:274]   --->   Operation 84 'zext' 'zext_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_4 : Operation 85 [1/1] (0.00ns)   --->   "%state_addr = getelementptr i256 %state, i64 0, i64 %zext_ln274" [./intx/intx.hpp:274]   --->   Operation 85 'getelementptr' 'state_addr' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_4 : Operation 86 [2/2] (1.29ns)   --->   "%state_load = load i14 %state_addr" [./intx/intx.hpp:274]   --->   Operation 86 'load' 'state_load' <Predicate = (!icmp_ln272_1)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_4 : Operation 87 [1/1] (0.62ns)   --->   "%sub_ln48 = sub i2 %trunc_ln0, i2 %trunc_ln" [./intx/intx.hpp:48]   --->   Operation 87 'sub' 'sub_ln48' <Predicate = (!icmp_ln272_1)> <Delay = 0.62> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 88 [1/1] (0.72ns)   --->   "%switch_ln274 = switch i2 %sub_ln48, void %branch7, i2 0, void %.split..split34_crit_edge, i2 1, void %branch5, i2 2, void %branch6" [./intx/intx.hpp:274]   --->   Operation 88 'switch' 'switch_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 0.72>
+
+State 5 <SV = 4> <Delay = 4.50>
+ST_5 : Operation 89 [1/1] (0.00ns)   --->   "%carry = phi i64 %carry_3, void %.split34, i64 0, void %.lr.ph.i.i.preheader"   --->   Operation 89 'phi' 'carry' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 90 [1/1] (0.00ns)   --->   "%r_word_num_bits_0_2_load = load i64 %r_word_num_bits_0_2"   --->   Operation 90 'load' 'r_word_num_bits_0_2_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 91 [1/1] (0.00ns)   --->   "%r_word_num_bits_1_2_load = load i64 %r_word_num_bits_1_2"   --->   Operation 91 'load' 'r_word_num_bits_1_2_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 92 [1/1] (0.00ns)   --->   "%r_word_num_bits_2_2_load = load i64 %r_word_num_bits_2_2"   --->   Operation 92 'load' 'r_word_num_bits_2_2_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 93 [1/1] (0.00ns)   --->   "%r_word_num_bits_3_2_load = load i64 %r_word_num_bits_3_2"   --->   Operation 93 'load' 'r_word_num_bits_3_2_load' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 94 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 94 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 95 [1/1] (0.00ns)   --->   "%trunc_ln50_6 = bitconcatenate i5 @_ssdm_op_BitConcatenate.i5.i2.i3, i2 %trunc_ln0, i3 0" [./intx/intx.hpp:50]   --->   Operation 95 'bitconcatenate' 'trunc_ln50_6' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_5 : Operation 96 [1/2] (1.29ns)   --->   "%state_load = load i14 %state_addr" [./intx/intx.hpp:274]   --->   Operation 96 'load' 'state_load' <Predicate = (!icmp_ln272_1)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_5 : Operation 97 [1/1] (0.82ns)   --->   "%add_ln274 = add i5 %trunc_ln50_6, i5 %trunc_ln50_17" [./intx/intx.hpp:274]   --->   Operation 97 'add' 'add_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 98 [1/1] (0.00ns)   --->   "%shl_ln18 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %add_ln274, i3 0" [./intx/intx.hpp:274]   --->   Operation 98 'bitconcatenate' 'shl_ln18' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_5 : Operation 99 [1/1] (0.00ns)   --->   "%zext_ln274_1 = zext i8 %shl_ln18" [./intx/intx.hpp:274]   --->   Operation 99 'zext' 'zext_ln274_1' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_5 : Operation 100 [1/1] (1.44ns)   --->   "%lshr_ln274 = lshr i256 %state_load, i256 %zext_ln274_1" [./intx/intx.hpp:274]   --->   Operation 100 'lshr' 'lshr_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 1.44> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 1.44> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 101 [1/1] (0.00ns)   --->   "%trunc_ln274 = trunc i256 %lshr_ln274" [./intx/intx.hpp:274]   --->   Operation 101 'trunc' 'trunc_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_5 : Operation 102 [1/1] (0.00ns) (grouped into LUT with out node or_ln274)   --->   "%lshr_ln274_2 = lshr i64 %trunc_ln274, i64 %zext_ln267" [./intx/intx.hpp:274]   --->   Operation 102 'lshr' 'lshr_ln274_2' <Predicate = (!icmp_ln272_1)> <Delay = 0.00> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 1.44> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 103 [1/1] (1.30ns) (out node of the LUT)   --->   "%or_ln274 = or i64 %lshr_ln274_2, i64 %carry" [./intx/intx.hpp:274]   --->   Operation 103 'or' 'or_ln274' <Predicate = (!icmp_ln272_1)> <Delay = 1.30> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.14> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 104 [1/1] (0.46ns)   --->   "%store_ln274 = store i64 %or_ln274, i64 %r_word_num_bits_2_2" [./intx/intx.hpp:274]   --->   Operation 104 'store' 'store_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 2)> <Delay = 0.46>
+ST_5 : Operation 105 [1/1] (0.00ns)   --->   "%br_ln274 = br void %.split34" [./intx/intx.hpp:274]   --->   Operation 105 'br' 'br_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 2)> <Delay = 0.00>
+ST_5 : Operation 106 [1/1] (0.46ns)   --->   "%store_ln274 = store i64 %or_ln274, i64 %r_word_num_bits_1_2" [./intx/intx.hpp:274]   --->   Operation 106 'store' 'store_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 1)> <Delay = 0.46>
+ST_5 : Operation 107 [1/1] (0.00ns)   --->   "%br_ln274 = br void %.split34" [./intx/intx.hpp:274]   --->   Operation 107 'br' 'br_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 1)> <Delay = 0.00>
+ST_5 : Operation 108 [1/1] (0.46ns)   --->   "%store_ln274 = store i64 %or_ln274, i64 %r_word_num_bits_0_2" [./intx/intx.hpp:274]   --->   Operation 108 'store' 'store_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 0)> <Delay = 0.46>
+ST_5 : Operation 109 [1/1] (0.00ns)   --->   "%br_ln274 = br void %.split34" [./intx/intx.hpp:274]   --->   Operation 109 'br' 'br_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 0)> <Delay = 0.00>
+ST_5 : Operation 110 [1/1] (0.46ns)   --->   "%store_ln274 = store i64 %or_ln274, i64 %r_word_num_bits_3_2" [./intx/intx.hpp:274]   --->   Operation 110 'store' 'store_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 3)> <Delay = 0.46>
+ST_5 : Operation 111 [1/1] (0.00ns)   --->   "%br_ln274 = br void %.split34" [./intx/intx.hpp:274]   --->   Operation 111 'br' 'br_ln274' <Predicate = (!icmp_ln272_1 & sub_ln48 == 3)> <Delay = 0.00>
+ST_5 : Operation 112 [1/1] (1.30ns)   --->   "%shl_ln275 = shl i64 %trunc_ln274, i64 %zext_ln272" [./intx/intx.hpp:275]   --->   Operation 112 'shl' 'shl_ln275' <Predicate = (!icmp_ln272_1)> <Delay = 1.30> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 1.44> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 113 [1/1] (0.00ns)   --->   "%carry_3 = shl i64 %shl_ln275, i64 1" [./intx/intx.hpp:275]   --->   Operation 113 'shl' 'carry_3' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+ST_5 : Operation 114 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.lr.ph.i.i"   --->   Operation 114 'br' 'br_ln0' <Predicate = (!icmp_ln272_1)> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 3.23>
+ST_6 : Operation 115 [1/1] (0.50ns)   --->   "%br_ln0 = br void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit"   --->   Operation 115 'br' 'br_ln0' <Predicate = (k & !icmp_ln272)> <Delay = 0.50>
+ST_6 : Operation 116 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%r_word_num_bits_3_4 = phi i64 %r_word_num_bits_3_1, void %_ZN4intx4uintILj256EEC2Ev.exit.i.i, i64 0, void %_ZN4intxltILj256EEEbRKNS_4uintIXT_EEES4_.exit.i, i64 %r_word_num_bits_3_2_load, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit.loopexit" [./intx/intx.hpp:29]   --->   Operation 116 'phi' 'r_word_num_bits_3_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 117 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%r_word_num_bits_2_4 = phi i64 %r_word_num_bits_2_1, void %_ZN4intx4uintILj256EEC2Ev.exit.i.i, i64 0, void %_ZN4intxltILj256EEEbRKNS_4uintIXT_EEES4_.exit.i, i64 %r_word_num_bits_2_2_load, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit.loopexit" [./intx/intx.hpp:29]   --->   Operation 117 'phi' 'r_word_num_bits_2_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 118 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%r_word_num_bits_1_4 = phi i64 %r_word_num_bits_1_1, void %_ZN4intx4uintILj256EEC2Ev.exit.i.i, i64 0, void %_ZN4intxltILj256EEEbRKNS_4uintIXT_EEES4_.exit.i, i64 %r_word_num_bits_1_2_load, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit.loopexit" [./intx/intx.hpp:29]   --->   Operation 118 'phi' 'r_word_num_bits_1_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 119 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%r_word_num_bits_0_4 = phi i64 %r_word_num_bits_0_1, void %_ZN4intx4uintILj256EEC2Ev.exit.i.i, i64 0, void %_ZN4intxltILj256EEEbRKNS_4uintIXT_EEES4_.exit.i, i64 %r_word_num_bits_0_2_load, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit.loopexit" [./intx/intx.hpp:29]   --->   Operation 119 'phi' 'r_word_num_bits_0_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 120 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%or_ln892_2 = bitconcatenate i256 @_ssdm_op_BitConcatenate.i256.i64.i64.i64.i64, i64 %r_word_num_bits_3_4, i64 %r_word_num_bits_2_4, i64 %r_word_num_bits_1_4, i64 %r_word_num_bits_0_4" [./intx/intx.hpp:892]   --->   Operation 120 'bitconcatenate' 'or_ln892_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 121 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%zext_ln892 = zext i256 %or_ln892_2" [./intx/intx.hpp:892]   --->   Operation 121 'zext' 'zext_ln892' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 122 [1/1] (0.00ns)   --->   "%trunc_ln892 = trunc i19 %x_read" [./intx/intx.hpp:892]   --->   Operation 122 'trunc' 'trunc_ln892' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 123 [1/1] (0.00ns)   --->   "%zext_ln892_1 = zext i5 %trunc_ln892" [./intx/intx.hpp:892]   --->   Operation 123 'zext' 'zext_ln892_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 124 [1/1] (1.29ns)   --->   "%shl_ln892 = shl i63 4294967295, i63 %zext_ln892_1" [./intx/intx.hpp:892]   --->   Operation 124 'shl' 'shl_ln892' <Predicate = true> <Delay = 1.29> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 1.44> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 125 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%shl_ln892_1 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i5.i3, i5 %trunc_ln892, i3 0" [./intx/intx.hpp:892]   --->   Operation 125 'bitconcatenate' 'shl_ln892_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 126 [1/1] (0.00ns) (grouped into LUT with out node shl_ln892_2)   --->   "%zext_ln892_2 = zext i8 %shl_ln892_1" [./intx/intx.hpp:892]   --->   Operation 126 'zext' 'zext_ln892_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 127 [1/1] (1.44ns) (out node of the LUT)   --->   "%shl_ln892_2 = shl i504 %zext_ln892, i504 %zext_ln892_2" [./intx/intx.hpp:892]   --->   Operation 127 'shl' 'shl_ln892_2' <Predicate = true> <Delay = 1.44> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 1.44> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 128 [1/1] (0.72ns)   --->   "%icmp_ln892 = icmp_eq  i5 %trunc_ln892, i5 0" [./intx/intx.hpp:892]   --->   Operation 128 'icmp' 'icmp_ln892' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 129 [1/1] (0.00ns)   --->   "%trunc_ln892_3 = partselect i14 @_ssdm_op_PartSelect.i14.i19.i32.i32, i19 %x_read, i32 5, i32 18" [./intx/intx.hpp:892]   --->   Operation 129 'partselect' 'trunc_ln892_3' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 130 [1/1] (0.00ns)   --->   "%zext_ln892_3 = zext i14 %trunc_ln892_3" [./intx/intx.hpp:892]   --->   Operation 130 'zext' 'zext_ln892_3' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 131 [1/1] (0.00ns)   --->   "%trunc_ln892_1 = trunc i63 %shl_ln892" [./intx/intx.hpp:892]   --->   Operation 131 'trunc' 'trunc_ln892_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 132 [1/1] (0.00ns)   --->   "%trunc_ln892_2 = trunc i504 %shl_ln892_2" [./intx/intx.hpp:892]   --->   Operation 132 'trunc' 'trunc_ln892_2' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 133 [1/1] (0.00ns)   --->   "%state_addr_16 = getelementptr i256 %state, i64 0, i64 %zext_ln892_3" [./intx/intx.hpp:892]   --->   Operation 133 'getelementptr' 'state_addr_16' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 134 [1/1] (1.29ns)   --->   "%store_ln892 = store void @_ssdm_op_Write.bram.p0L_a4i64packedL, i14 %state_addr_16, i256 %trunc_ln892_2, i32 %trunc_ln892_1" [./intx/intx.hpp:892]   --->   Operation 134 'store' 'store_ln892' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_6 : Operation 135 [1/1] (0.00ns)   --->   "%tmp_19 = partselect i31 @_ssdm_op_PartSelect.i31.i63.i32.i32, i63 %shl_ln892, i32 32, i32 62" [./intx/intx.hpp:892]   --->   Operation 135 'partselect' 'tmp_19' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 136 [1/1] (0.00ns)   --->   "%zext_ln892_4 = zext i31 %tmp_19" [./intx/intx.hpp:892]   --->   Operation 136 'zext' 'zext_ln892_4' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 137 [1/1] (0.00ns)   --->   "%tmp_20 = partselect i248 @_ssdm_op_PartSelect.i248.i504.i32.i32, i504 %shl_ln892_2, i32 256, i32 503" [./intx/intx.hpp:892]   --->   Operation 137 'partselect' 'tmp_20' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 138 [1/1] (0.00ns)   --->   "%zext_ln892_6 = zext i248 %tmp_20" [./intx/intx.hpp:892]   --->   Operation 138 'zext' 'zext_ln892_6' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 139 [1/1] (1.05ns)   --->   "%add_ln892 = add i14 %trunc_ln892_3, i14 1" [./intx/intx.hpp:892]   --->   Operation 139 'add' 'add_ln892' <Predicate = true> <Delay = 1.05> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.05> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 140 [1/1] (0.00ns)   --->   "%zext_ln892_5 = zext i14 %add_ln892" [./intx/intx.hpp:892]   --->   Operation 140 'zext' 'zext_ln892_5' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 141 [1/1] (0.00ns)   --->   "%state_addr_17 = getelementptr i256 %state, i64 0, i64 %zext_ln892_5" [./intx/intx.hpp:892]   --->   Operation 141 'getelementptr' 'state_addr_17' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 142 [1/1] (0.00ns)   --->   "%br_ln892 = br i1 %icmp_ln892, void, void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit._crit_edge" [./intx/intx.hpp:892]   --->   Operation 142 'br' 'br_ln892' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 143 [1/1] (1.29ns)   --->   "%store_ln892 = store void @_ssdm_op_Write.bram.p0L_a4i64packedL, i14 %state_addr_17, i256 %zext_ln892_6, i32 %zext_ln892_4" [./intx/intx.hpp:892]   --->   Operation 143 'store' 'store_ln892' <Predicate = (!icmp_ln892)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 256> <Depth = 8986> <RAM>
+ST_6 : Operation 144 [1/1] (0.00ns)   --->   "%br_ln892 = br void %_ZN4intxrsILj256ENS_4uintILj256EEEvEENS1_IXT_EEERKS3_RKT0_.exit._crit_edge" [./intx/intx.hpp:892]   --->   Operation 144 'br' 'br_ln892' <Predicate = (!icmp_ln892)> <Delay = 0.00>
+ST_6 : Operation 145 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 145 'ret' 'ret_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 0.46ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', ./intx/int128.hpp:211) [17]  (0.46 ns)
+
+ <State 2>: 3.2ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', ./intx/int128.hpp:211) [17]  (0 ns)
+	'mux' operation ('tmp_s', ./intx/int128.hpp:213) [26]  (0.544 ns)
+	'sub' operation ('sub_ln213', ./intx/int128.hpp:213) [27]  (1.36 ns)
+	'icmp' operation ('k2', ./intx/int128.hpp:215) [30]  (1.14 ns)
+	'or' operation ('k', ./intx/int128.hpp:217) [31]  (0.148 ns)
+
+ <State 3>: 1.75ns
+The critical path consists of the following:
+	'icmp' operation ('icmp_ln272', ./intx/intx.hpp:272) [68]  (1.14 ns)
+	multiplexor before 'phi' operation ('r_word_num_bits_3_4', ./intx/intx.hpp:29) with incoming values : ('r_word_num_bits_3_1', ./intx/intx.hpp:29) ('r_word_num_bits_3_2_load') [131]  (0.502 ns)
+	blocking operation 0.106 ns on control path)
+
+ <State 4>: 3.54ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', ./intx/intx.hpp:272) [82]  (0 ns)
+	'sub' operation ('i', ./intx/intx.hpp:274) [94]  (1.12 ns)
+	'add' operation ('add_ln50', ./intx/intx.hpp:50) [98]  (1.12 ns)
+	'getelementptr' operation ('state_addr', ./intx/intx.hpp:274) [101]  (0 ns)
+	'load' operation ('state_load', ./intx/intx.hpp:274) on array 'state' [102]  (1.3 ns)
+
+ <State 5>: 4.5ns
+The critical path consists of the following:
+	'load' operation ('state_load', ./intx/intx.hpp:274) on array 'state' [102]  (1.3 ns)
+	'lshr' operation ('lshr_ln274', ./intx/intx.hpp:274) [106]  (1.44 ns)
+	'lshr' operation ('lshr_ln274_2', ./intx/intx.hpp:274) [108]  (0 ns)
+	'or' operation ('or_ln274', ./intx/intx.hpp:274) [109]  (1.31 ns)
+	'store' operation ('store_ln274', ./intx/intx.hpp:274) of variable 'or_ln274', ./intx/intx.hpp:274 on local variable 'r_word_num_bits_2_2' [113]  (0.46 ns)
+
+ <State 6>: 3.24ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('r_word_num_bits_0_4', ./intx/intx.hpp:29) with incoming values : ('r_word_num_bits_0_1', ./intx/intx.hpp:29) ('r_word_num_bits_0_2_load') [134]  (0.502 ns)
+	'phi' operation ('r_word_num_bits_0_4', ./intx/intx.hpp:29) with incoming values : ('r_word_num_bits_0_1', ./intx/intx.hpp:29) ('r_word_num_bits_0_2_load') [134]  (0 ns)
+	'shl' operation ('shl_ln892_2', ./intx/intx.hpp:892) [142]  (1.44 ns)
+	'store' operation ('store_ln892', ./intx/intx.hpp:892) of constant <constant:_ssdm_op_Write.bram.p0L_a4i64packedL> on array 'state' [159]  (1.3 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
