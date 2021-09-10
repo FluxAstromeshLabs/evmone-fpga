@@ -126,7 +126,7 @@ https://github.com/nhannamsiu/evmone-fpga.git
 
 - Function variables: Functions code will be hardwired on hardware logic fabric, so that it could run seamlessly, function variables are prohibited because it cannot call a function address as CPU does. Function variable should be changed into static function implementation
 
-- Storage access: Fpga does not directly support hard disk access, so some instructions, such as SLOAD and SSTORE cannot execute correctly, it is left doing nothing at current version. We have a solution of using ``hls::stream`` to read from the host, currently not fully leveraged but it is still promising solution.
+- Storage access: We cannot directly access hard disk, so some instructions, such as ``SLOAD`` and ``SSTORE``, we have to use ``hls::stream`` to request input and output from/to host. Solution of using ``hls::stream`` to read from the host is currently not fully leveraged but it is still promising solution.
 
 - C++17 standard: Evmone implementation requires C++17 standards while xillinx C++ compiler sticked to C++11. Some executable ``constexpr`` scopes are changed to static declaration
 
