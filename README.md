@@ -40,9 +40,6 @@ Directory layout
 │   │   └───.tb
 │   ├───.reference
 │   ├───.settings
-│   ├───Debug
-│   │   ├───source
-│   │   └───testbench
 │   └───refactor
 │       ├───.autopilot
 │       │   └───db
